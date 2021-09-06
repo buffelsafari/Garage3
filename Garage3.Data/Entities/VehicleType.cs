@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Garage3.Data.Entities
 {
@@ -7,6 +7,8 @@ namespace Garage3.Data.Entities
         public virtual int AmountPlaces { get; set; }
         public virtual decimal BasicFee { get; set; }
         public virtual VehicleCategory VehicleCategory { get; set; }
+        // public virtual ICollection<Vehicle> Vehicles { get; set; }
+        // public virtual ICollection<Membership> VehicleTypeRates { get; set; }
     }
 
     public enum VehicleCategory

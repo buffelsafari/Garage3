@@ -1,8 +1,19 @@
-﻿namespace Garage3.Data.Entities
+﻿using System.Collections.Generic;
+
+namespace Garage3.Data.Entities
 {
-    public enum MembershipType
+    public class MembershipType:Entity
     {
-        BASIC = 0,
-        PRO = 1
+        public virtual string Name { get; set; }
+
+        public virtual MembershipTypeLevel Level { get; set; }
+        public virtual ICollection<Membership> Memberships { get; set; }
+    }
+
+
+    public enum MembershipTypeLevel
+    {
+        basic=0,
+        pro=1
     }
 }

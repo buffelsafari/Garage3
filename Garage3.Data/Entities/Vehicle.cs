@@ -14,8 +14,10 @@ namespace Garage3.Data.Entities
             
             public virtual Member Owner { get; set; } 
             
-            public virtual ParkEvent ParkEvent { get; set; }
+            public virtual ICollection<ParkEvent> ParkEvent { get; set; }
             
-            public virtual ICollection<VehicleType> Type { get; set; }
+            public virtual VehicleType Type { get; set; }
+
+            
     }
 }
