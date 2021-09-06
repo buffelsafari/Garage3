@@ -6,7 +6,7 @@ namespace Garage3.Data.Entities
     {
         public virtual int Number { get; set; }
         public virtual string Section { get; set; }
-        public virtual ICollection<ParkEvent> ParkTimes { get; set; }
+        public virtual ICollection<ParkEvent> ParkEvents { get; set; }
         public virtual Garage Garage { get; set; }
     }
 }
