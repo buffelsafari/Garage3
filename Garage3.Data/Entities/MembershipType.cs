@@ -2,7 +2,7 @@
 {
     public class MembershipType
     {
-        public MembershipType Basic { get; set; }
-        public MembershipType PRO { get; set; }
+        public virtual MembershipType Basic { get; set; }
+        public virtual MembershipType PRO { get; set; }
     }
 }

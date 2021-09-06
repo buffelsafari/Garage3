@@ -1,7 +1,13 @@
-﻿namespace Garage3.Data.Entities
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace Garage3.Data.Entities
 {
     public class Membership
     {
-        public MembershipType MembershipType { get; set; }
+        public virtual MembershipType MembershipType { get; set; }
+        
+        public virtual ICollection<VehicleTypeRate> VehicleTypes { get; set; }
+
     }
 }
