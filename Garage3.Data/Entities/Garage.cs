@@ -7,7 +7,6 @@ namespace Garage3.Data.Entities
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
         public virtual decimal HourlyRate { get; set; }
-        
         public virtual ICollection<ParkingLot> ParkingLots { get; set; }
     }
 }
