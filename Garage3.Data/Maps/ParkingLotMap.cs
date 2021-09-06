@@ -29,14 +29,11 @@ namespace Garage3.Data.Maps
                     e => e.HasOne(e => e.ParkEvent).WithMany(),
                     e => e.HasOne(e => e.ParkingLot).WithMany());
 
+            
 
+                        
 
-            // .HasMany(s => s.Courses)
-            //         .WithMany(c => c.Students)
-            //         .UsingEntity<Enrollment>(
-            //              e => e.HasOne(e => e.Course).WithMany(c => c.Enrollments),
-            //              e => e.HasOne(e => e.Student).WithMany(s => s.Enrollments));
-
+            
         }
     }
 }

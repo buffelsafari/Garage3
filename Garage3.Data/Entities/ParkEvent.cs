@@ -10,5 +10,7 @@ namespace Garage3.Data.Entities
         public virtual DateTime DepartureTime { get; set; }
         public virtual Receipt Receipt { get; set; }
         public virtual ICollection<ParkingLot> ParkingLots { get; set; }
+
+
     }
 }
