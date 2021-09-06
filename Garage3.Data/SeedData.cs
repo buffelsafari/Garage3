@@ -63,13 +63,13 @@ namespace Garage3.Data
                     Manufacturer = _faker.Vehicle.Manufacturer(),
                     PlateNumber = _faker.Vehicle.Vin(),
                     Wheels = _faker.Random.Int(2, 8),
-                    // Owner = members.ElementAt(_faker.Random.Int(0, len)),
-                    ParkEvent = new ParkEvent()
-                    {
-                        ArrivalTime = DateTime.Now,
-                        ParkingLots = new[] { parkingLots.ElementAt(i) },
-                    },
-                    Type = new[] {vehicleTypes.ElementAt(0)}
+                    // Owner = members.ElementAt(_faker.Random.Int(0, len)), // FIXME
+                    // ParkEvent = new ParkEvent()
+                    // {
+                    //     ArrivalTime = DateTime.Now,
+                    //     ParkingLots = new[] { parkingLots.ElementAt(i) },
+                    // },
+                    // Type = new[] {vehicleTypes.ElementAt(0)}
                 };
                 vehicles.Add(enrollment);
             }
@@ -146,7 +146,7 @@ namespace Garage3.Data
                     VehicleType = vehicleTypes.ElementAt(i)
                 };
 
-                membership.VehicleTypes = new List<VehicleTypeRate>() {vehicleTypeRate};
+                // membership.VehicleTypes = new List<VehicleTypeRate>() {vehicleTypeRate}; // FIXME
 
                 memberships.Add(membership);
             }
@@ -154,13 +154,13 @@ namespace Garage3.Data
             return memberships;
         }
 
-        private static IEnumerable<MembershipType> GetMembershipTypes()
+        private static IEnumerable<MembershipTypeLevel> GetMembershipTypes()
         {
-            var types = new List<MembershipType>();
+            var types = new List<MembershipTypeLevel>();
 
             for (var i = 0; i < 20; i++)
             {
-                var type = i % 2 == 0 ? MembershipType.PRO : MembershipType.BASIC;
+                var type = i % 2 == 0 ? MembershipTypeLevel.pro : MembershipTypeLevel.basic;
                 types.Add(type);
             }
 
