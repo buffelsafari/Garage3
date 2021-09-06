@@ -1,8 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Garage3.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Garage3.Data
+namespace Garage3.Data.Maps
 {
     public abstract class EntityMap<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : Entity
     {

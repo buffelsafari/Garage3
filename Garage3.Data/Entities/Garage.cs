@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace Garage3.Data
+﻿namespace Garage3.Data.Entities
 {
     public class Garage : Entity
     {
