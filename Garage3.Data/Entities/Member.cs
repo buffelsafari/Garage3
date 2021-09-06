@@ -5,13 +5,13 @@ namespace Garage3.Data.Entities
 {
     public class Member : Entity
     {
-        public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PersonalNumber { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Surname { get; set; }
+        public virtual string PhoneNumber { get; set; }
+        public virtual string PersonalNumber { get; set; }
 
-
-        public ICollection<Membership> Memberships { get; set; }
-        public ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Membership> Memberships { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 
 }
