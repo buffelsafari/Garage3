@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Garage3.Data
+namespace Garage3.Data.Entities
 {
     public abstract class Entity
     {
