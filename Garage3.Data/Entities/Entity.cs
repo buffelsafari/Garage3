@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Garage3.Data.Entities
+namespace Garage3.Data
 {
     public abstract class Entity
     {
         /// <summary>
         /// The entity's primary key
         /// </summary>
-        public virtual Guid Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// When the entity was created (Local time)
