@@ -9,6 +9,10 @@ namespace Garage3.Data.Entities
         
         public virtual ICollection<VehicleType> VehicleTypesRates { get; set; }
 
+        public virtual ICollection<ParkEvent> ParkEvents { get; set; }
+
+        public virtual Member Member { get; set; }
+
         public virtual Garage Garage { get; set; }
 
     }
