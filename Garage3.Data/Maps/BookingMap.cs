@@ -29,10 +29,6 @@ namespace Garage3.Data.Maps
                 .WithMany(p => p.Bookings);
 
             builder
-                .HasOne(p => p.Receipt)
-                .WithOne(p => p.Booking);
-
-            builder
                 .HasMany(p => p.ParkingLots)
                 .WithMany(p => p.Bookings);
         }

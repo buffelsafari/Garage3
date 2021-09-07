@@ -17,7 +17,8 @@ namespace Garage3.Data.Maps
 
             builder
                 .HasOne(p => p.Booking)
-                .WithOne(p => p.Receipt);
+                .WithOne(p => p.Receipt)
+                .HasForeignKey<Receipt>(p => p.Id);
         }
     }
 }
