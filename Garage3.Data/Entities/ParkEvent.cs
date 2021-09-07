@@ -11,8 +11,6 @@ namespace Garage3.Data.Entities
         public virtual Receipt Receipt { get; set; }
         public virtual ICollection<ParkingLot> ParkingLots { get; set; }
 
-        public virtual Membership Membership { get; set; }
-
 
     }
 }

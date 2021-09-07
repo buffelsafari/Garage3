@@ -17,5 +17,3 @@ namespace Garage3.Data.Entities
         pro=1
     }
 }
-
-
