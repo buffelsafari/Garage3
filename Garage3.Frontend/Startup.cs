@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Garage3.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Garage3.Frontend
 {
@@ -24,6 +26,9 @@ namespace Garage3.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<GarageContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("GarageContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
