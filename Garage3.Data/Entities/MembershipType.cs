@@ -6,14 +6,9 @@ namespace Garage3.Data.Entities
     {
         public virtual string Name { get; set; }
 
-        public virtual MembershipTypeLevel Level { get; set; }
-        public virtual ICollection<Membership> Memberships { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
+
+        public virtual Garage Garage { get; set; }
     }
 
-
-    public enum MembershipTypeLevel
-    {
-        basic=0,
-        pro=1
-    }
 }
