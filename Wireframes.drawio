@@ -1,0 +1,243 @@
+<mxfile host="app.diagrams.net" modified="2021-09-07T12:11:52.643Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="ScQm2EY38pY-tBxmPWdK" version="15.0.6" type="github">
+  <diagram name="Page-1" id="c9db0220-8083-56f3-ca83-edcdcd058819">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" style=";html=1;" />
+        <mxCell id="1" style=";html=1;" parent="0" />
+        <mxCell id="3d76a8aef4d5c911-1" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" parent="1" vertex="1">
+          <mxGeometry x="30" y="60" width="1150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3d76a8aef4d5c911-2" value="Garage grupp4" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" parent="3d76a8aef4d5c911-1" vertex="1">
+          <mxGeometry width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-29" value="Checkin" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="3d76a8aef4d5c911-1">
+          <mxGeometry x="542" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-9" value="Members" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="170" y="60" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-10" value="Vehicles" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="285" y="60" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-12" value="New" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1270" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-13" value="Garages" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="410" y="60" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-14" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="550" width="1150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-15" value="MemberView" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="KHPmeNDimLCG52CwibbD-14">
+          <mxGeometry width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-18" value="Search" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="705" y="620" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-19" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1000" width="1150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-20" value="VehicleView" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="KHPmeNDimLCG52CwibbD-19">
+          <mxGeometry width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-21" value="Search" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1270" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-22" value="Details" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1280" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-25" value="Search" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1380" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-30" value="Checkout" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="620" y="1370" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-31" value="New VehicleType" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="735" y="2020" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-32" value="Register" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;html=1;strokeColor=#C8C8C8;fillColor=#ffffff;whiteSpace=wrap;verticalAlign=top;align=left;fontSize=18;spacing=15;spacingTop=-5;" vertex="1" parent="1">
+          <mxGeometry x="770" y="730" width="400" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-33" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-32">
+          <mxGeometry width="400" height="10" relative="1" as="geometry">
+            <mxPoint y="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-34" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.x;strokeColor=#868686;strokeWidth=2;" vertex="1" parent="KHPmeNDimLCG52CwibbD-32">
+          <mxGeometry x="1" width="8" height="8" relative="1" as="geometry">
+            <mxPoint x="-24" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-36" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-32">
+          <mxGeometry width="410" height="10" relative="1" as="geometry">
+            <mxPoint y="420" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-37" value="Save changes" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#0085FC;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-32">
+          <mxGeometry x="1" y="1" width="110" height="40" relative="1" as="geometry">
+            <mxPoint x="-130" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-38" value="Close" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#6C757D;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-32">
+          <mxGeometry x="1" y="1" width="70" height="40" relative="1" as="geometry">
+            <mxPoint x="-220" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-39" value="Register Member" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=#0085FC;fontColor=#FFFFFF;whiteSpace=wrap;align=center;verticalAlign=middle;spacingLeft=0;fontStyle=0;fontSize=16;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="620" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-45" value="Input Group Example" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#CED4DA;html=1;whiteSpace=wrap;fillColor=#FFFFFF;fontColor=#7D868C;align=left;spacingLeft=40;" vertex="1" parent="1">
+          <mxGeometry x="90" y="625" width="640" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-46" value="@" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.leftButton;strokeColor=inherit;gradientColor=inherit;fontColor=inherit;fillColor=#E9ECEF;rSize=5;perimeter=none;whiteSpace=wrap;resizeHeight=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-45">
+          <mxGeometry width="30" height="30" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-58" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#DEE2E6;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#0085FC;" vertex="1" parent="1">
+          <mxGeometry x="470" y="960" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-59" value="&lt;&lt;" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;fontColor=inherit;html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.leftButton;rSize=5;perimeter=none;whiteSpace=wrap;resizeHeight=1;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-58">
+          <mxGeometry width="30" height="30" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-60" value="1" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;fontColor=inherit;html=1;shadow=0;dashed=0;perimeter=none;whiteSpace=wrap;resizeHeight=1;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-58">
+          <mxGeometry width="30" height="30" relative="1" as="geometry">
+            <mxPoint x="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-61" value="2" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;fontColor=inherit;html=1;shadow=0;dashed=0;perimeter=none;whiteSpace=wrap;resizeHeight=1;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-58">
+          <mxGeometry width="30" height="30" relative="1" as="geometry">
+            <mxPoint x="60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-62" value="3" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;fontColor=inherit;html=1;shadow=0;dashed=0;perimeter=none;whiteSpace=wrap;resizeHeight=1;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-58">
+          <mxGeometry width="30" height="30" relative="1" as="geometry">
+            <mxPoint x="90" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-63" value="&gt;&gt;" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;fontColor=inherit;html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rightButton;rSize=5;perimeter=none;whiteSpace=wrap;resizeHeight=1;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-58">
+          <mxGeometry x="1" width="30" height="30" relative="1" as="geometry">
+            <mxPoint x="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-76" value="Register Vehicle" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=#0085FC;fontColor=#FFFFFF;whiteSpace=wrap;align=center;verticalAlign=middle;spacingLeft=0;fontStyle=0;fontSize=16;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1110" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-77" value="New Vehicletype&lt;br&gt;" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=#0085FC;fontColor=#FFFFFF;whiteSpace=wrap;align=center;verticalAlign=middle;spacingLeft=0;fontStyle=0;fontSize=16;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="890" y="1895" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-78" value="Register Vehicle" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;html=1;strokeColor=#C8C8C8;fillColor=#ffffff;whiteSpace=wrap;verticalAlign=top;align=left;fontSize=18;spacing=15;spacingTop=-5;" vertex="1" parent="1">
+          <mxGeometry x="960" y="1210" width="270" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-79" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-78">
+          <mxGeometry width="270" height="10" relative="1" as="geometry">
+            <mxPoint y="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-80" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.x;strokeColor=#868686;strokeWidth=2;" vertex="1" parent="KHPmeNDimLCG52CwibbD-78">
+          <mxGeometry x="1" width="8" height="8" relative="1" as="geometry">
+            <mxPoint x="-24" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-81" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-78">
+          <mxGeometry width="276.75" height="10" relative="1" as="geometry">
+            <mxPoint x="-67" y="900" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-82" value="Save changes" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#0085FC;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-78">
+          <mxGeometry x="1" y="1" width="110" height="40" relative="1" as="geometry">
+            <mxPoint x="-130" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-83" value="Close" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#6C757D;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-78">
+          <mxGeometry x="1" y="1" width="70" height="40" relative="1" as="geometry">
+            <mxPoint x="-220" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-84" value="Create Vehicle Type" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;html=1;strokeColor=#C8C8C8;fillColor=#ffffff;whiteSpace=wrap;verticalAlign=top;align=left;fontSize=18;spacing=15;spacingTop=-5;" vertex="1" parent="1">
+          <mxGeometry x="912.5" y="1980" width="270" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-85" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-84">
+          <mxGeometry width="270" height="10" relative="1" as="geometry">
+            <mxPoint y="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-86" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.x;strokeColor=#868686;strokeWidth=2;" vertex="1" parent="KHPmeNDimLCG52CwibbD-84">
+          <mxGeometry x="1" width="8" height="8" relative="1" as="geometry">
+            <mxPoint x="-24" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-87" value="" style="shape=line;strokeColor=#dddddd;resizeWidth=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-84">
+          <mxGeometry width="276.75" height="10" relative="1" as="geometry">
+            <mxPoint y="420" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-88" value="Save changes" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#0085FC;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-84">
+          <mxGeometry x="1" y="1" width="110" height="40" relative="1" as="geometry">
+            <mxPoint x="-130" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-89" value="Close" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#6C757D;strokeColor=none;fontColor=#FFFFFF;fontSize=14;" vertex="1" parent="KHPmeNDimLCG52CwibbD-84">
+          <mxGeometry x="1" y="1" width="70" height="40" relative="1" as="geometry">
+            <mxPoint x="-220" y="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-90" value="Edit" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1310" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-91" value="Edit" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="550" y="770" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-92" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="32.5" y="240" width="1150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-93" value="GarageView" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="KHPmeNDimLCG52CwibbD-92">
+          <mxGeometry width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-94" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#6C767D;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#212529;verticalAlign=bottom;align=left;spacing=20;spacingBottom=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="135" y="320" width="250" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-95" value="Header" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.topButton;rSize=5;perimeter=none;whiteSpace=wrap;fillColor=#F7F7F7;strokeColor=#6C767D;fontColor=#6C767D;resizeWidth=1;fontSize=18;align=left;spacing=20;" vertex="1" parent="KHPmeNDimLCG52CwibbD-94">
+          <mxGeometry width="250" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-100" value="View" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=none;strokeWidth=1;fillColor=#0085FC;fontColor=#FFFFFF;whiteSpace=wrap;align=center;verticalAlign=middle;spacingLeft=0;fontStyle=0;fontSize=16;spacing=5;" vertex="1" parent="KHPmeNDimLCG52CwibbD-94">
+          <mxGeometry x="163" y="140" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-96" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px&quot;&gt;Dark card title&lt;/font&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 14px&quot;&gt;&lt;br style=&quot;font-size: 14px&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#39;s content." style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#6C767D;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#212529;verticalAlign=bottom;align=left;spacing=20;spacingBottom=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="437" y="320" width="250" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-97" value="Header" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.topButton;rSize=5;perimeter=none;whiteSpace=wrap;fillColor=#F7F7F7;strokeColor=#6C767D;fontColor=#6C767D;resizeWidth=1;fontSize=18;align=left;spacing=20;" vertex="1" parent="KHPmeNDimLCG52CwibbD-96">
+          <mxGeometry width="250" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-98" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px&quot;&gt;Dark card title&lt;/font&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 14px&quot;&gt;&lt;br style=&quot;font-size: 14px&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#39;s content." style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#6C767D;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#212529;verticalAlign=bottom;align=left;spacing=20;spacingBottom=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="760" y="320" width="250" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-99" value="Header" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.topButton;rSize=5;perimeter=none;whiteSpace=wrap;fillColor=#F7F7F7;strokeColor=#6C767D;fontColor=#6C767D;resizeWidth=1;fontSize=18;align=left;spacing=20;" vertex="1" parent="KHPmeNDimLCG52CwibbD-98">
+          <mxGeometry width="250" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-101" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="45" y="1820" width="1150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-102" value="Garage Details" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="KHPmeNDimLCG52CwibbD-101">
+          <mxGeometry width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-103" value="Search" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1110" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-104" value="Input Group Example" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#CED4DA;html=1;whiteSpace=wrap;fillColor=#FFFFFF;fontColor=#7D868C;align=left;spacingLeft=40;" vertex="1" parent="1">
+          <mxGeometry x="45" y="1115" width="640" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-105" value="@" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.leftButton;strokeColor=inherit;gradientColor=inherit;fontColor=inherit;fillColor=#E9ECEF;rSize=5;perimeter=none;whiteSpace=wrap;resizeHeight=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-104">
+          <mxGeometry width="30" height="30" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-106" value="Search" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="685" y="1890" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-107" value="Input Group Example" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#CED4DA;html=1;whiteSpace=wrap;fillColor=#FFFFFF;fontColor=#7D868C;align=left;spacingLeft=40;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1895" width="640" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KHPmeNDimLCG52CwibbD-108" value="@" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.leftButton;strokeColor=inherit;gradientColor=inherit;fontColor=inherit;fillColor=#E9ECEF;rSize=5;perimeter=none;whiteSpace=wrap;resizeHeight=1;" vertex="1" parent="KHPmeNDimLCG52CwibbD-107">
+          <mxGeometry width="30" height="30" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

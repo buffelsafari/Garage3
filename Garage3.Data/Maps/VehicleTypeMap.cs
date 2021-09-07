@@ -15,13 +15,31 @@ namespace Garage3.Data.Maps
         {
             builder.ToTable("VehicleTypes");
 
-            builder.Property(p => p.BasicFee).HasPrecision(18, 2).IsRequired();
+            builder
+                .Property(p => p.Name)
+                .HasMaxLength(128)
+                .IsRequired();
 
-            builder.Property(p => p.AmountPlaces).IsRequired();
+            builder
+                .HasIndex(p => p.Name)
+                .IsUnique();
 
-            builder.HasMany(p => p.Vehicles).WithOne(p=>p.Type);
+            builder
+                .Property(p => p.BasicFee)
+                .HasPrecision(18, 2)
+                .IsRequired();
 
-            //builder.HasMany(p => p.VehicleTypeRates).WithMany(p => p.VehicleTypesRates);
+            builder
+                .Property(p => p.RequiredParkingLots)
+                .IsRequired();
+
+            builder
+                .HasMany(p => p.Vehicles)
+                .WithOne(p => p.VehicleType);
+
+            builder
+                .HasOne(p => p.Garage)
+                .WithMany(p => p.VehicleTypes);
         }
     }
 }

@@ -23,17 +23,18 @@ namespace Garage3.Data.Maps
                 .Property(p => p.Section)
                 .IsRequired();
 
-            builder.HasMany(p => p.ParkEvents)
-                .WithMany(p => p.ParkingLots)
-                .UsingEntity<ParkingStatus>(
-                    e => e.HasOne(e => e.ParkEvent).WithMany(),
-                    e => e.HasOne(e => e.ParkingLot).WithMany());
+            builder
+                .Property(p => p.Occupied)
+                .IsRequired();
 
-            
+            builder
+                .HasOne(p => p.Garage)
+                .WithMany(p => p.ParkingLots);
 
-                        
+            builder
+                .HasMany(p => p.Bookings)
+                .WithMany(p => p.ParkingLots);
 
-            
         }
     }
 }
