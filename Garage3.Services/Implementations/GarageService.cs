@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Garage3.Data;
 using Garage3.Data.Entities;
 
@@ -13,28 +14,18 @@ namespace Garage3.Services
         {
             _context = context;
         }
-
-        public VehicleType RegisterVehicleType()
+        
+        public async Task<IEnumerable<ParkingLot>> GetAvailableParkingLots(string plateNumber, DateTime timeOfArrival)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ParkingLot> GetAvailableParkingLots(string plateNumber, DateTime timeOfArrival)
+        public Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(string plateNumber)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ParkingLot> GetLotsForParkedVehicle(string plateNumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<ParkingLot> GetParkingLots(string garageName, DateTime pointInTime)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Unpark(string plateNumber)
+        public Task<IEnumerable<ParkingLot>> GetParkingLots(string garageName, DateTime pointInTime)
         {
             throw new NotImplementedException();
         }

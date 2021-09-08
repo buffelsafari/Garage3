@@ -1,4 +1,5 @@
-﻿using Garage3.Data;
+﻿using System.Threading.Tasks;
+using Garage3.Data;
 using Garage3.Data.Entities;
 
 namespace Garage3.Services
@@ -12,12 +13,12 @@ namespace Garage3.Services
             _context = context;
         }
 
-        public Member RegisterMember(string plateNumber, string personalNumber, string firstName, string lastName, string phoneNumber)
+        public async Task<Member> RegisterMember(string plateNumber, string personalNumber, string firstName, string lastName, string phoneNumber)
         {
             throw new System.NotImplementedException();
         }
 
-        public Member GetMember(string personalNumber)
+        public async Task<Member> GetMember(string personalNumber)
         {
             throw new System.NotImplementedException();
         }
