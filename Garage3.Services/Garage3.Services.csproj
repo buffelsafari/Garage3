@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Garage3.Data\Garage3.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Garages\" />
+  </ItemGroup>
+
 </Project>
