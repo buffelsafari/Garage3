@@ -5,7 +5,17 @@
     @Html.AntiForgeryToken()
 }
 
-
+<script src="/js/checkoutHandler.js"></script>
+<script src="/js/VehicleEditHandler.js"></script>
+<script src="/js/VehicleDetailsHandler.js"></script>
+<script>
+window.onload = function (e)
+{    
+    new VehicleDetailsHandler();
+    new VehicleEditHandler();
+    new CheckoutHandler();
+}
+</script>
 
 
 
