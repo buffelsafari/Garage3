@@ -10,7 +10,7 @@ namespace Garage3.Services
     {
         Task<Member> RegisterMember(RegisterMemberArgs args, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<Member>> FindMembers(string personalNumber, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Member>> FindMembers(FindMemberArgs args, CancellationToken cancellationToken = default);
     }
 
     public class RegisterMemberArgs
@@ -24,5 +24,16 @@ namespace Garage3.Services
         public string PersonalNumber { get; set; }
 
         public virtual string MembershipTypeName { get; set; }
+    }
+
+    public class FindMemberArgs
+    {
+        public string FirstName { get; set; }
+
+        public string Surname { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string PersonalNumber { get; set; }
     }
 }
