@@ -37,6 +37,8 @@ namespace Garage3.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasDefaultSchema("Garage3");
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(GarageMap).Assembly);
         }
