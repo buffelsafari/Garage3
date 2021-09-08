@@ -1,4 +1,5 @@
 ﻿using Garage3.Frontend.Models.ViewModels;
+using Garage3.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,11 @@ namespace Garage3.Frontend.Controllers.Garages
 {
     public class GaragesController : Controller
     {
+        private IGarageService garageService;
+        public GaragesController(IGarageService garageService)
+        {
+            this.garageService = garageService;
+        }
         
 
         public async Task<IActionResult> Index()  
