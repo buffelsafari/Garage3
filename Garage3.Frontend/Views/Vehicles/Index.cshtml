@@ -1,0 +1,73 @@
+﻿@model Garage3.Frontend.Models.ViewModels.VehicleOverviewModelView
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+
+
+
+
+<h1>Vehicles</h1>
+
+<div class="container m-0 p-0">
+    <div class="row">
+        <div class="col-10">
+
+            <form asp-action="Search">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" name="title" placeholder="Search on plateNumber" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-2">
+            <button type="button" id="registerVehicle" class="btn btn-primary" data-toggle="modal" data-target="#registerVehicleModal">Register Vehicle</button>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            @foreach (var item in Model.TableHead)
+            {
+                <th>
+                    @item
+                </th>
+            }
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.Vehicles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlateNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+
+                    <button type="button" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" class="checkoutButton btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
