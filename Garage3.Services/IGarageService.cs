@@ -16,4 +16,6 @@ namespace Garage3.Services
 
         Task<IEnumerable<ParkingLot>> GetParkingLots(string garageName, DateTime pointInTime, CancellationToken cancellationToken = default);
     }
+
+
 }
