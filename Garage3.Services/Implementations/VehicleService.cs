@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Garage3.Data;
 using Garage3.Data.Entities;
 
@@ -13,12 +14,12 @@ namespace Garage3.Services
             _context = context;
         }
 
-        public async Task<Vehicle> RegisterVehicle(string plateNumber, string modelName, VehicleType vehicleType, string personalNumber)
+        public async Task<Vehicle> RegisterVehicle(string plateNumber, string modelName, VehicleType vehicleType, string personalNumber, CancellationToken cancellationToken = default)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Vehicle> GetVehicle(string plateNumber)
+        public async Task<Vehicle> GetVehicle(string plateNumber, CancellationToken cancellationToken = default)
         {
             throw new System.NotImplementedException();
         }

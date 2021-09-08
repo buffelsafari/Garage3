@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Garage3.Data;
 using Garage3.Data.Entities;
+using Microsoft.Extensions.Primitives;
 
 namespace Garage3.Services
 {
@@ -15,17 +17,17 @@ namespace Garage3.Services
             _context = context;
         }
         
-        public async Task<IEnumerable<ParkingLot>> GetAvailableParkingLots(string plateNumber, DateTime timeOfArrival)
+        public async Task<IEnumerable<ParkingLot>> GetAvailableParkingLots(string plateNumber, DateTime timeOfArrival, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(string plateNumber)
+        public Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(string plateNumber, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ParkingLot>> GetParkingLots(string garageName, DateTime pointInTime)
+        public Task<IEnumerable<ParkingLot>> GetParkingLots(string garageName, DateTime pointInTime, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
