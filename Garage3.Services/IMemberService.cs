@@ -23,7 +23,7 @@ namespace Garage3.Services
 
         public string PersonalNumber { get; set; }
 
-        public virtual string MembershipTypeName { get; set; }
+        public string MembershipTypeName { get; set; }
     }
 
     public class FindMemberArgs
