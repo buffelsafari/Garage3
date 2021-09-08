@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Garage3.Data;
 using Microsoft.EntityFrameworkCore;
+using Garage3.Frontend.FakeServices;
+using Garage3.Services;
 
 namespace Garage3.Frontend
 {
@@ -26,6 +28,9 @@ namespace Garage3.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
+            services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------
 
             services.AddDbContext<GarageContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GarageContext")));
