@@ -1,5 +1,6 @@
 ﻿using Garage3.Frontend.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -150,6 +151,28 @@ namespace Garage3.Frontend.Controllers.Garages
 
 
             return View(nameof(GarageOverview), model);
+        }
+
+
+
+
+        public string OnVehicleDetails(int id)  // todo move to vehicle controller
+        {
+            // todo find vehicle from id
+
+            VehicleDetailModelView model = new VehicleDetailModelView
+            {
+                PlateNumber = "EFG123",
+                Model = "911",
+                Manufacturer = "Porsche",
+                Wheels = 4,
+                Type = "Car",
+                OwnerName = "Stig",
+                OwnerId = 1
+            };
+
+
+            return JsonConvert.SerializeObject(model);
         }
 
 

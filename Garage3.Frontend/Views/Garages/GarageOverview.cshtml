@@ -3,6 +3,11 @@
 <h1>@Model.GarageName</h1>
 
 
+<style>
+    .detailsButton { /* used for javascript events*/
+
+    }
+</style>
 
 
 
@@ -23,7 +28,7 @@
             </form>
 
         </div>
-        <div class="col-2">            
+        <div class="col-2">
             <button type="button" id="newVehicleTypeButton" class="btn btn-primary" data-id="@Model.GarageId" data-toggle="modal" data-target="#newVehicleTypeModal">New Vehicle Type</button>
         </div>
     </div>
@@ -37,7 +42,7 @@
             @foreach (var item in Model.TableHead)
             {
                 <th>
-                    @Html.DisplayNameFor(model => model.TableHead)
+                    @item
                 </th>
             }
         </tr>
@@ -58,9 +63,10 @@
                     @Html.DisplayFor(modelItem => item.VehicleType)
                 </td>
                 <td>
-                    <a class="btn btn-primary" asp-action="GarageOverview" asp-route-id="@item.VehicleId" role="button">Details</a>
-                    <a class="btn btn-primary" asp-action="GarageOverview" asp-route-id="@item.VehicleId" role="button">Edit</a>
-                    <a class="btn btn-primary ml-5" asp-action="GarageOverview" asp-route-id="@item.VehicleId" role="button">Checkout</a>
+
+                    <button type="button" name="details" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" id="editButton" class="btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" id="checkoutButton" class="btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
                 </td>
             </tr>
         }
@@ -85,7 +91,7 @@
             <div class="modal-body">
 
                 <div id="idTest">hello</div>
-                
+
 
             </div>
             <div class="modal-footer">
@@ -96,18 +102,153 @@
     </div>
 </div>
 
+
+
+
+<!-- Details modal -->
+<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="detailsDivId">
+
+                    <span>hello world</span>
+                </div>
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="idTest">hello</div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal fade" id="CheckoutModal" tabindex="-1" role="dialog" aria-labelledby="Checkout" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Checkout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="idTest">hello</div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
-    window.addEventListener("load", () =>
-    {
-        
-        document.getElementById("newVehicleTypeButton").addEventListener("click",(event) =>
-        {            
-            document.getElementById("idTest").innerHTML = "the garage id is " + event.target.getAttribute("data-id");
+
+
+
+
+    window.addEventListener("load", () => {
+
+        //$('#CheckoutModal').on('show.bs.modal', (event) => {
+        //    console.log("test on show");
+        //    $.ajax({
+        //        type: "GET",
+        //        url: "",
+        //        //url: "/Garages/TestGet",
+        //        data: { id: "12" },
+        //        cache: false,
+        //        success: function (result) {
+        //            console.log("result is: " + result)
+        //        }
+        //    });
+        //});
+
+
+        document.querySelectorAll(".detailsButton").forEach(element => { // clicking the details button
+
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                let vehicleId = event.target.getAttribute("data-id");
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("OnVehicleDetails", "Garages")",
+                    //url: "/Garages/TestGet",
+                    data: { id: vehicleId },
+                    cache: false,
+                    success: function (result)
+                    {
+                        let element = document.getElementById("detailsDivId");
+                        let details = JSON.parse(result);
+                        element.innerHTML = "";
+                        element.innerHTML += "<span>PlateNumber: " + details.PlateNumber + "<span><br>";
+                        element.innerHTML += "<span>Manufacturer: " + details.Manufacturer + "<span><br>";
+                        element.innerHTML += "<span>Model: " + details.Model + "<span><br>";
+                        element.innerHTML += "<span>NumberOfWheels: " + details.Wheels + "<span><br>";
+                        element.innerHTML += "<span>VehicleType: " + details.Type + "<span><br>";
+                        element.innerHTML += "<span>Owned by: <a href>" + details.OwnerName + "</a><span><br>";
+
+                        console.log("result is: " + result)
+                    }                    
+                });
+            });
         });
-        
-        
+
+
+
+
 
 
     });
 
+
+
+
+
 </script>
+
+
