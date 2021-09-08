@@ -27,7 +27,7 @@ namespace Garage3.Tests
 
     [TestFixture]
     [Category("LocalDB")]
-    public class GarageLocalDBTests : GarageTests
+    public class GarageLocalDbTests : GarageTests
     {
         protected override void Configure()
         {

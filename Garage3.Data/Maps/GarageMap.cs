@@ -23,6 +23,12 @@ namespace Garage3.Data.Maps
                 .Property(p => p.Description)
                 .HasMaxLength(1024);
 
+
+            builder
+                .Property(p => p.BasicFee)
+                .HasPrecision(18,2)
+                .IsRequired();
+
             builder
                 .HasMany(p => p.VehicleTypes)
                 .WithOne(p => p.Garage);
