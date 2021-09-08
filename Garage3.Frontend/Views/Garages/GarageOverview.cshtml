@@ -1,11 +1,22 @@
 ﻿@model Garage3.Frontend.Models.ViewModels.GarageOverviewModelView
 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+
 <h1>@Model.GarageName</h1>
 
 
 <style>
     .detailsButton { /* used for javascript events*/
+    }
 
+    .editButton { /* used for javascript events*/
+    }
+
+    .checkoutButton { /* used for javascript events*/
     }
 </style>
 
@@ -64,9 +75,9 @@
                 </td>
                 <td>
 
-                    <button type="button" name="details" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
-                    <button type="button" id="editButton" class="btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
-                    <button type="button" id="checkoutButton" class="btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
+                    <button type="button" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" class="checkoutButton btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
                 </td>
             </tr>
         }
@@ -79,24 +90,25 @@
 
 
 <!-- new Vehicle type modal -->
-<div class="modal fade" id="newVehicleTypeModal" tabindex="-1" role="dialog" aria-labelledby="New VehicleType" aria-hidden="true">
+<div class="modal fade" id="newVehicleTypeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">New Vehicle Type</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <div id="idTest">hello</div>
+                <div id="newVehicleTypeDivId">
+                </div>
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button id="newVehicleTypeSaveButton" type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -106,12 +118,12 @@
 
 
 <!-- Details modal -->
-<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -119,25 +131,20 @@
 
                 <div id="detailsDivId">
 
-                    <span>hello world</span>
+
                 </div>
-
-
-
-
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Edit modal -->
-<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -148,37 +155,81 @@
             </div>
             <div class="modal-body">
 
-                <div id="idTest">hello</div>
+                <div id="editDivId">
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">PlateNumber</span>
+                        </div>
+                        <input id="editPlateNumber" type="text" class="form-control" placeholder="Plate Number">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Manufacturer</span>
+                        </div>
+                        <input id="editManufacturer" type="text" class="form-control" placeholder="Manufacturer">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Model</span>
+                        </div>
+                        <input id="editModel" type="text" class="form-control" placeholder="Model">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Number of Wheels</span>
+                        </div>
+                        <input id="editWheels" type="number" class="form-control" placeholder="Number of wheels">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Vehicle type</span>
+                        </div>
+                        <input id="editType" type="text" class="form-control" placeholder="Vehicle type(todo dropdown)">
+                    </div>
+
+
+
+
+                </div>
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button id="EditSaveButton" type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Checkout modal -->
-<div class="modal fade" id="CheckoutModal" tabindex="-1" role="dialog" aria-labelledby="Checkout" aria-hidden="true">
+<div class="modal fade" id="CheckoutModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Checkout</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <div id="idTest">hello</div>
+                <div id="checkoutDivId">
+
+
+                </div>
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button id="CheckoutSaveButton" type="button" class="btn btn-primary">Checkout</button>
             </div>
         </div>
     </div>
@@ -188,62 +239,297 @@
 <script>
 
 
+    window.onload = function (e) {
 
 
-    window.addEventListener("load", () => {
-
-        //$('#CheckoutModal').on('show.bs.modal', (event) => {
-        //    console.log("test on show");
-        //    $.ajax({
-        //        type: "GET",
-        //        url: "",
-        //        //url: "/Garages/TestGet",
-        //        data: { id: "12" },
-        //        cache: false,
-        //        success: function (result) {
-        //            console.log("result is: " + result)
-        //        }
-        //    });
-        //});
+        new NewVehicleTypeHandler();
+        new VehicleDetailsHandler();
+        new VehicleEditHandler();
+        new CheckoutHandler();
+    }
 
 
-        document.querySelectorAll(".detailsButton").forEach(element => { // clicking the details button
 
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
 
-                let vehicleId = event.target.getAttribute("data-id");
 
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("OnVehicleDetails", "Garages")",
-                    //url: "/Garages/TestGet",
-                    data: { id: vehicleId },
-                    cache: false,
-                    success: function (result)
-                    {
-                        let element = document.getElementById("detailsDivId");
-                        let details = JSON.parse(result);
-                        element.innerHTML = "";
-                        element.innerHTML += "<span>PlateNumber: " + details.PlateNumber + "<span><br>";
-                        element.innerHTML += "<span>Manufacturer: " + details.Manufacturer + "<span><br>";
-                        element.innerHTML += "<span>Model: " + details.Model + "<span><br>";
-                        element.innerHTML += "<span>NumberOfWheels: " + details.Wheels + "<span><br>";
-                        element.innerHTML += "<span>VehicleType: " + details.Type + "<span><br>";
-                        element.innerHTML += "<span>Owned by: <a href>" + details.OwnerName + "</a><span><br>";
 
-                        console.log("result is: " + result)
-                    }                    
-                });
+
+
+    class CheckoutHandler
+    {
+        #vehicleId
+
+        constructor()
+        {
+            document.querySelectorAll(".checkoutButton").forEach(element => { 
+
+                element.addEventListener("click", (event) => this.#OnEnterModal(event));
+
             });
-        });
+
+            document.getElementById("CheckoutSaveButton").addEventListener("click", (event) => this.#OnCheckoutButton(event));
+
+        }
+
+        #OnEnterModal(event)
+        {
+            event.preventDefault();
+
+            this.#vehicleId = event.target.getAttribute("data-id");
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("OnVehicleCheckoutButton", "Garages")",
+                data: { id: this.#vehicleId },
+                cache: false,
+                success: function (result)
+                {
+                    let element = document.getElementById("checkoutDivId");
+                    let details = JSON.parse(result);
+
+                    element.innerHTML = "";
+                    element.innerHTML += "Vehicle id:"+details.VehicleId+"<br>";
+                    element.innerHTML += details.item1;
+                    element.innerHTML += details.item2;
+                    element.innerHTML += details.item3;
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
+
+        #OnCheckoutButton(event)
+        {
+            //let garageId = event.target.getAttribute("data-id");
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+            $.ajax({
+                type: "POST",  // todo post?
+                url: "@Url.Action("OnCheckout", "Garages")",
+                data: {__RequestVerificationToken: token, Id: this.#vehicleId, Item1: "hello", Item2: "world"
+                },
+                cache: false,
+                success: (result)=>
+                {
+                    let element = document.getElementById("checkoutDivId");
+                    let details = JSON.parse(result);
+
+
+                    element.innerHTML += "is valid?:"+details.Success+"<br>";
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
+
+    }
+
+
+
+
+    class VehicleEditHandler
+    {
+        #vehicleId;
+
+        constructor() {
+            document.querySelectorAll(".editButton").forEach(element => {
+
+                element.addEventListener("click", (event) => this.#OnEnterModal(event));
+
+            });
+
+            document.getElementById("EditSaveButton").addEventListener("click", (event) => this.#OnSaveButton(event));
+
+        }
+
+
+        #OnEnterModal(event)
+        {
+            event.preventDefault();
+
+            this.#vehicleId = event.target.getAttribute("data-id");
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("OnVehicleEditButton", "Garages")",
+                data: { id: this.#vehicleId },
+                cache: false,
+                success: function (result)
+                {
+
+                    let details = JSON.parse(result);
+
+                    document.getElementById("editPlateNumber").value = details.PlateNumber;
+                    document.getElementById("editModel").value = details.Model;
+                    document.getElementById("editManufacturer").value = details.Manufacturer;
+                    document.getElementById("editWheels").value = details.Wheels;
+                    document.getElementById("editType").value = details.Type;
+
+                    console.log("result is: " + result)
+                }
+            });
+
+
+        }
+        #OnSaveButton(event)
+        {
+            //let garageId = event.target.getAttribute("data-id");
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+            $.ajax({
+                type: "POST",  // todo post?
+                url: "@Url.Action("OnEditSave", "Garages")",
+                data: {__RequestVerificationToken: token, Id: this.#vehicleId, Item1: "hello", Item2: "world"
+                },
+                cache: false,
+                success: (result)=>
+                {
+                    let element = document.getElementById("editDivId");
+                    let details = JSON.parse(result);
+
+
+                    element.innerHTML += "is valid?:"+details.Success+"<br>";
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
 
 
 
 
 
 
-    });
+    }
+
+
+
+
+    //----------------------------------------------------------------------------
+    class VehicleDetailsHandler
+    {
+
+        constructor()
+        {
+            document.querySelectorAll(".detailsButton").forEach(element => element.addEventListener("click", (event) => this.#OnEnterModal(event)));
+
+
+        }
+
+        #OnEnterModal(event)
+        {
+            event.preventDefault();
+
+            let vehicleId = event.target.getAttribute("data-id");
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("OnVehicleDetailsButton", "Garages")",
+                //url: "/Garages/TestGet",
+                data: { id: vehicleId },
+                cache: false,
+                success: function (result)
+                {
+                    let element = document.getElementById("detailsDivId");
+                    let details = JSON.parse(result);
+
+                    element.innerHTML = "";
+                    element.innerHTML += "<span>PlateNumber: " + details.PlateNumber + "<span><br>";
+                    element.innerHTML += "<span>Manufacturer: " + details.Manufacturer + "<span><br>";
+                    element.innerHTML += "<span>Model: " + details.Model + "<span><br>";
+                    element.innerHTML += "<span>NumberOfWheels: " + details.Wheels + "<span><br>";
+                    element.innerHTML += "<span>VehicleType: " + details.Type + "<span><br>";
+                    element.innerHTML += "<span>Owned by: <a href>" + details.OwnerName + "</a><span><br>";
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
+
+    }
+
+    // ------------------------------------------------------------------
+    class NewVehicleTypeHandler
+    {
+        #currentGarageId;
+
+
+        constructor()
+        {
+            document.getElementById("newVehicleTypeButton").addEventListener("click", (event)=>this.#OnEnterModal(event));
+
+            document.getElementById("newVehicleTypeSaveButton").addEventListener("click", (event) => this.#OnSaveButton(event));
+        }
+
+        #OnEnterModal(event)
+        {
+            this.#currentGarageId = event.target.getAttribute("data-id");
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("OnNewVehicleTypeButton", "Garages")",
+                data: { id: this.#currentGarageId },
+                cache: false,
+                success: (result)=>
+                {
+                    let element = document.getElementById("newVehicleTypeDivId");
+                    let details = JSON.parse(result);
+
+                    element.innerHTML = "";
+                    element.innerHTML += "Garage id:"+details.GarageId+"<br>";
+                    element.innerHTML += details.item1;
+                    element.innerHTML += details.item2;
+                    element.innerHTML += details.item3;
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
+
+        #OnSaveButton(event)
+        {
+            //let garageId = event.target.getAttribute("data-id");
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+            $.ajax({
+                type: "POST",  // todo post?
+                url: "@Url.Action("OnNewVehicleTypeSave", "Garages")",
+                data: {__RequestVerificationToken: token, Id: this.#currentGarageId, Item1: "hello", Item2: "world"
+                },
+                cache: false,
+                success: (result)=>
+                {
+                    let element = document.getElementById("newVehicleTypeDivId");
+                    let details = JSON.parse(result);
+
+
+                    element.innerHTML += "is valid?:"+details.Success+"<br>";
+
+                    console.log("result is: " + result)
+                }
+            });
+
+        }
+
+
+
+
+
+
+    }
+
+
 
 
 

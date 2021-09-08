@@ -156,7 +156,12 @@ namespace Garage3.Frontend.Controllers.Garages
 
 
 
-        public string OnVehicleDetails(int id)  // todo move to vehicle controller
+        /// <summary>
+        /// triggers when details button is clicked
+        /// </summary>
+        /// <param name="id">the Vehicle id</param>
+        /// <returns>json with vehicle data</returns>
+        public string OnVehicleDetailsButton(int id)  // todo move to vehicle controller
         {
             // todo find vehicle from id
 
@@ -171,8 +176,134 @@ namespace Garage3.Frontend.Controllers.Garages
                 OwnerId = 1
             };
 
+            return JsonConvert.SerializeObject(model);
+        }
+
+        public string OnVehicleEditButton(int id)  // todo maybe refactor with above
+        {
+            // todo find vehicle from id
+
+            VehicleDetailModelView model = new VehicleDetailModelView
+            {
+                PlateNumber = "EFG123",
+                Model = "911",
+                Manufacturer = "Porsche",
+                Wheels = 4,
+                Type = "Car",
+                OwnerName = "Stig",
+                OwnerId = 1
+            };
 
             return JsonConvert.SerializeObject(model);
+        }
+
+
+        public string OnVehicleCheckoutButton(int id)   
+        {
+            // todo find vehicle from id
+            var model = new
+            {
+                VehicleId=id,
+                item1 = 1,
+                item2 = 2,
+                item3 = 3
+            };            
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+        public string OnNewVehicleTypeButton(int id)
+        {
+            
+            var model = new
+            {
+                GarageId = id,
+                item1 = 1,
+                item2 = 2,
+                item3 = 3
+            };
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string OnNewVehicleTypeSave(NewVehicleSaveData data)
+        {
+            // todo create a new vehicleType
+            Debug.WriteLine("Garage Id:"+data.Id);
+            Debug.WriteLine("Garage Item1:" + data.Item1);
+            Debug.WriteLine("Garage Item2:" + data.Item2);
+
+
+            var result = new
+            {
+                Success=true,
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string OnEditSave(EditSaveData data)
+        {
+            // edit the vehicle
+            Debug.WriteLine("Garage Id:" + data.Id);
+            Debug.WriteLine("Garage Item1:" + data.Item1);
+            Debug.WriteLine("Garage Item2:" + data.Item2);
+
+
+            var result = new
+            {
+                Success = true,
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string OnCheckout(CheckoutData data)
+        {
+            // edit the vehicle
+            Debug.WriteLine("Garage Id:" + data.Id);
+            Debug.WriteLine("Garage Item1:" + data.Item1);
+            Debug.WriteLine("Garage Item2:" + data.Item2);
+
+
+            var result = new
+            {
+                Success = true,
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+
+
+
+        public class NewVehicleSaveData  // todo use modelviews
+        { 
+            public int Id { get; set; }
+            public string Item1 { get; set; }
+            public string Item2 { get; set; }
+        }
+
+        public class EditSaveData
+        {
+            public int Id { get; set; }
+            public string Item1 { get; set; }
+            public string Item2 { get; set; }
+        }
+
+        public class CheckoutData
+        {
+            public int Id { get; set; }
+            public string Item1 { get; set; }
+            public string Item2 { get; set; }
         }
 
 
