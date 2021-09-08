@@ -18,6 +18,9 @@ namespace Garage3.Data.Maps
             builder.Property(p => p.Wheels)
                 .IsRequired();
 
+            builder.Property(p => p.Color)
+                .IsRequired();
+
             builder
                 .Property(p => p.Model)
                 .IsRequired()

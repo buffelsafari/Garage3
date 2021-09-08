@@ -15,6 +15,7 @@ namespace Garage3.Data.Entities
         public virtual string PersonalNumber { get; set; }
 
         public virtual MembershipType MembershipType { get; set; }
+
         public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 
