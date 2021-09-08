@@ -2,7 +2,7 @@
 
 namespace Garage3.Data.Entities
 {
-    public class MembershipType:Entity
+    public class MembershipType : Entity
     {
         public virtual string Name { get; set; }
 

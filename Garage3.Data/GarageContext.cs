@@ -37,6 +37,62 @@ namespace Garage3.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Vehicle>(v =>
+            {
+
+                v.HasOne(veh => veh.VehicleType)
+                    .WithMany(c => c.Vehicles)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
+
+                v.HasOne(e => e.Owner)
+                    .WithMany(o => o.Vehicles)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
+
+                v.HasMany<Booking>()
+                    .WithOne(b => b.Vehicle)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+            
+            modelBuilder.Entity<Member>(m =>
+            {
+                m.HasOne(mem => mem.MembershipType)
+                    .WithMany(t => t.Members)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
+
+                m.HasMany<Vehicle>()
+                    .WithOne(v => v.Owner);
+            });
+            
+            modelBuilder.Entity<Garage>(g =>
+            {
+                g.HasMany<MembershipType>()
+                    .WithOne(t => t.Garage);
+                
+                g.HasMany<VehicleType>()
+                    .WithOne(t => t.Garage);
+                
+                g.HasMany<ParkingLot>()
+                    .WithOne(t => t.Garage);
+            });
+            
+            modelBuilder.Entity<Booking>(b =>
+            {
+                b.HasMany<ParkingLot>()
+                    .WithMany(p => p.Bookings);
+                
+                b.HasOne(book => book.Receipt)
+                    .WithOne(r => r.Booking);
+                
+                b.HasOne(book => book.Vehicle)
+                    .WithMany(r => r.Bookings);
+            });
+            
+
             modelBuilder.HasDefaultSchema("Garage3");
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(GarageMap).Assembly);
         }
