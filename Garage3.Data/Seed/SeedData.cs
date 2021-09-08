@@ -15,17 +15,33 @@ namespace Garage3.Data.Seed
 
         public static async Task InitAsync(IServiceProvider services)
         {
-            using (var db = services.GetRequiredService<GarageContext>())
-            {
-                if (await db.Garages.AnyAsync()) return;
+            await using var db = services.GetRequiredService<GarageContext>();
+            if (await db.Garages.AnyAsync()) return;
 
-                _faker = new Faker("sv");
+            _faker = new Faker("sv");
 
-                var vehicles = InitVehicles();
-                await db.AddRangeAsync(vehicles);
+            var vehicles = InitVehicles();
+            await db.AddRangeAsync(vehicles);
 
-                await db.SaveChangesAsync();
-            }
+            var bookings = InitBookings();
+            await db.AddRangeAsync(bookings);
+                
+            var members = InitMembers();
+            await db.AddRangeAsync(members);
+                
+            var vehicleTypes = InitVehicleTypes();
+            await db.AddRangeAsync(vehicleTypes);
+                
+            var membershipTypes = InitMembershipTypes();
+            await db.AddRangeAsync(membershipTypes);
+                
+            var parkingLots = InitParkingLots();
+            await db.AddRangeAsync(parkingLots);
+                
+            var garages = InitGarages();
+            await db.AddRangeAsync(garages);
+
+            await db.SaveChangesAsync();
         }
 
         private static IEnumerable<Booking> InitBookings()
@@ -146,7 +162,7 @@ namespace Garage3.Data.Seed
                 var lot = new ParkingLot()
                 {
                     Number = i,
-                    Section = _faker.Company.CompanyName().Substring(0, 2)
+                    Section = _faker.Company.CompanyName()[..2]
                 };
                 lots.Add(lot);
             }
