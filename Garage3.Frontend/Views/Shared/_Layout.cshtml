@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/garage3.css" />
 </head>
 <body>
+    <partial name="~/Views/Shared/_NewVehicleTypeModal.cshtml" />
+    <partial name="~/Views/Shared/_VehicleDetailsModal.cshtml" />
+    <partial name="~/Views/Shared/_VehicleEditModal.cshtml" />
+    <partial name="~/Views/Shared/_CheckoutModal.cshtml" />
+
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -27,6 +34,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Garages" asp-action="Index">Garages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles</a>
                         </li>
                     </ul>
                 </div>
@@ -47,6 +57,13 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="/js/checkoutHandler.js"></script>
+    <script src="/js/VehicleEditHandler.js"></script>
+    <script src="/js/VehicleDetailsHandler.js"></script>
+    <script src="/js/NewVehicleTypeHandler.js"></script>
+    <script src="/js/garage3main.js"></script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

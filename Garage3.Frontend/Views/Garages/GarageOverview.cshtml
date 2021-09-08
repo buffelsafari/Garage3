@@ -9,16 +9,7 @@
 <h1>@Model.GarageName</h1>
 
 
-<style>
-    .detailsButton { /* used for javascript events*/
-    }
 
-    .editButton { /* used for javascript events*/
-    }
-
-    .checkoutButton { /* used for javascript events*/
-    }
-</style>
 
 
 
@@ -89,173 +80,31 @@
 
 
 
-<!-- new Vehicle type modal -->
-<div class="modal fade" id="newVehicleTypeModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">New Vehicle Type</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div id="newVehicleTypeDivId">
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="newVehicleTypeSaveButton" type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-
-<!-- Details modal -->
-<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Details</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div id="detailsDivId">
-
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit modal -->
-<div class="modal fade" id="EditModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div id="editDivId">
-
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">PlateNumber</span>
-                        </div>
-                        <input id="editPlateNumber" type="text" class="form-control" placeholder="Plate Number">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Manufacturer</span>
-                        </div>
-                        <input id="editManufacturer" type="text" class="form-control" placeholder="Manufacturer">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Model</span>
-                        </div>
-                        <input id="editModel" type="text" class="form-control" placeholder="Model">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Number of Wheels</span>
-                        </div>
-                        <input id="editWheels" type="number" class="form-control" placeholder="Number of wheels">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Vehicle type</span>
-                        </div>
-                        <input id="editType" type="text" class="form-control" placeholder="Vehicle type(todo dropdown)">
-                    </div>
-
-
-
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="EditSaveButton" type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Checkout modal -->
-<div class="modal fade" id="CheckoutModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Checkout</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div id="checkoutDivId">
-
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="CheckoutSaveButton" type="button" class="btn btn-primary">Checkout</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script>
 
 
-    window.onload = function (e) {
+    //window.onload = function (e) {
 
 
-        new NewVehicleTypeHandler();
-        new VehicleDetailsHandler();
-        new VehicleEditHandler();
-        new CheckoutHandler();
-    }
-
-
-
+    //    new NewVehicleTypeHandler();
+    //    new VehicleDetailsHandler();
+    //    new VehicleEditHandler();
+    //    new CheckoutHandler();
+    //}
 
 
 
 
 
-    class CheckoutHandler
+
+
+
+    @*class CheckoutHandler
     {
         #vehicleId
 
@@ -326,12 +175,12 @@
 
         }
 
-    }
+    }*@
 
 
 
 
-    class VehicleEditHandler
+    @*class VehicleEditHandler
     {
         #vehicleId;
 
@@ -407,13 +256,13 @@
 
 
 
-    }
+    }*@
 
 
 
 
     //----------------------------------------------------------------------------
-    class VehicleDetailsHandler
+    @*class VehicleDetailsHandler
     {
 
         constructor()
@@ -454,7 +303,7 @@
 
         }
 
-    }
+    }*@
 
     // ------------------------------------------------------------------
     class NewVehicleTypeHandler
