@@ -1,6 +1,4 @@
 using System;
-using System.Data.Entity;
-using Garage3.Data;
 using Garage3.Data.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
