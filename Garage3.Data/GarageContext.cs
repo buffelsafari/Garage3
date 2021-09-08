@@ -4,6 +4,7 @@ using Garage3.Data.Maps;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
+
 namespace Garage3.Data
 {
     public class GarageContext : DbContext

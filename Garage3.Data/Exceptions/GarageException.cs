@@ -24,6 +24,13 @@ namespace Garage3.Data.Exceptions
         {
         }
     }
+
+    public class CheckoutException : GarageException
+    {
+        public CheckoutException(string message) : base(message + " this vehicle has been checked out")
+        {
+        }
+    }
     
     public class InvalidPersonalNumberException : GarageException
     {

@@ -74,6 +74,7 @@ namespace Garage3.Data.Seed
                     Surname = _faker.Person.LastName,
                     PhoneNumber = _faker.Person.Phone,
                     PersonalNumber = _faker.Person.Personnummer()
+                    
                 };
                 members.Add(member);
             }
@@ -110,6 +111,7 @@ namespace Garage3.Data.Seed
                     Manufacturer = _faker.Vehicle.Manufacturer(),
                     PlateNumber = _faker.Vehicle.Vin(),
                     Wheels = _faker.Random.Int(2, 8),
+                    
                 };
                 vehicles.Add(vehicle);
             }
