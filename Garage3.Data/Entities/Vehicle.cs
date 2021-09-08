@@ -17,5 +17,7 @@ namespace Garage3.Data.Entities
         public virtual VehicleType VehicleType { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
+
+        public virtual VehicleColor Color { get; set;}
     }
 }
