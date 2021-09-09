@@ -22,7 +22,18 @@ namespace Garage3.Frontend.FakeServices
                     Manufacturer="nisse",
                     PlateNumber="ABC123",
                     Wheels=4,
-                    Owner=null,
+                    Owner=new Member
+                    {
+                        FirstName="Olle",
+                        Surname="Berg",
+                        PhoneNumber="123889977",
+                        PersonalNumber="199912241234",
+                        MembershipType=new MembershipType
+                        { 
+                            Name="Gold"
+                        },
+                        Vehicles=null
+                    },
                     VehicleType=new VehicleType
                     {
                         Name="Car",

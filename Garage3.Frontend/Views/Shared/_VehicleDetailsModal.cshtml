@@ -1,6 +1,4 @@
-﻿
-
-<!-- Details modal -->
+﻿<!-- Details modal -->
 <div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -13,7 +11,18 @@
             <div class="modal-body">
 
                 <div id="detailsDivId">
-
+                    <span>PlateNumber:</span><span id="detailPlateNumber"></span><br>
+                    <span>Manufacturer:</span><span id="detailManufacturer"></span><br>
+                    <span>Model:</span><span id="detailModel"></span><br>
+                    <span>Color:</span><span id="detailColor"></span><br>
+                    <span>Wheels:</span><span id="detailWheels"></span><br>
+                    <span>Type:</span><span id="detailType"></span><br>
+                    <br>
+                    <span>FirstName:</span><span id="detailFirstName"></span><br>
+                    <span>Surname:</span><span id="detailSurname"></span><br>
+                    <span>PhoneNumber:</span><span id="detailPhoneNumber"></span><br>
+                    <span>PersonalNumber:</span><span id="detailPersonalNumber"></span><br>
+                    <span>MembershipType:</span><span id="detailMembershipType"></span><br>
 
                 </div>
 
@@ -25,3 +34,19 @@
         </div>
     </div>
 </div>
+
+
+
+        @*public string PlateNumber { get; set; }
+        public string Model { get; set; }
+        public string Manufacturer { get; set; }
+        public string Color { get; set; }
+        public int Wheels { get; set; }
+        public string Type { get; set; }
+
+        public int OwnerId { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string PhoneNumber { get; set; }
+        public string PersonalNumber { get; set; }
+        public string MembershipType { get; set; }*@

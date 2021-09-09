@@ -11,7 +11,7 @@ namespace Garage3.Frontend.FakeServices
     public class FakeGarageService : IGarageService
     {
         public Task<IEnumerable<Garage>> FindGarages(FindGarageArgs args, CancellationToken cancellationToken = default)
-        {
+        {            
             throw new NotImplementedException();
         }
 

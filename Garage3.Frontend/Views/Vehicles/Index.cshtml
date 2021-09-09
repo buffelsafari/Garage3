@@ -23,21 +23,31 @@ window.onload = function (e)
 
 <div class="container m-0 p-0">
     <div class="row">
-        <div class="col-10">
+        <div class="col-12">
 
             <form asp-action="Search">
 
-                <div class="input-group">
-                    <input type="text" class="form-control" name="title" placeholder="Search on plateNumber" />
-                    <div class="input-group-append">
+                <div class="input-group" style="padding:-100px;">
+                    
+                    <div class="input-group-prepend">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
                     </div>
+                    
+                    <input type="text" class="form-control" asp-for="PlateNumber" placeholder="PlateNumber" />
+                    <input type="text" class="form-control" asp-for="OwnersPersonalNumber" placeholder="PersonalNumber" />
+                    <input type="text" class="form-control" asp-for="Manufacturer" placeholder="Manufacturer" />
+                    <input type="text" class="form-control" asp-for="Model" placeholder="Model" />                    
+                    <input type="text" class="form-control" asp-for="VehicleTypeName" placeholder="VehicleType" />
+                    <input type="text" class="form-control" asp-for="Wheels" placeholder="Wheels" />
+                    <input type="text" class="form-control" asp-for="Color" placeholder="Color" />
+
+                    
                 </div>
             </form>
 
         </div>
-        <div class="col-2">
-            <button type="button" id="registerVehicle" class="btn btn-primary" data-toggle="modal" data-target="#registerVehicleModal">Register Vehicle</button>
+        <div class="col-12">
+            <button type="button" id="registerVehicle" class="btn btn-primary float-lg-right mt-5" data-toggle="modal" data-target="#registerVehicleModal">Register Vehicle</button>
         </div>
     </div>
 </div>
@@ -72,9 +82,9 @@ window.onload = function (e)
                 </td>
                 <td>
 
-                    <button type="button" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
-                    <button type="button" class="editButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
-                    <button type="button" class="checkoutButton btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
+                    <button type="button" class="detailsButton btn btn-primary float-left mr-3" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary float-left" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" class="checkoutButton btn btn-primary ml-5 float-right" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
                 </td>
             </tr>
         }

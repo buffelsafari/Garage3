@@ -19,7 +19,7 @@
 
         $.ajax({
             type: "GET",            
-            url: "/Garages/OnVehicleCheckoutButton",
+            url: "/Vehicles/OnVehicleCheckoutButton",
             data: { id: this.#vehicleId },
             cache: false,
             success: function (result) {
@@ -46,7 +46,7 @@
 
         $.ajax({
             type: "POST",             
-            url: "/Garages/OnCheckout",
+            url: "/Vehicles/OnCheckout",
             data: {
                 __RequestVerificationToken: token, Id: this.#vehicleId, Item1: "hello", Item2: "world"
             },
