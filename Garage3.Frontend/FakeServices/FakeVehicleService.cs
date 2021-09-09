@@ -2,6 +2,7 @@
 using Garage3.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,7 +53,18 @@ namespace Garage3.Frontend.FakeServices
                     Manufacturer="anka",
                     PlateNumber="ABC123",
                     Wheels=4,
-                    Owner=null,
+                    Owner=new Member
+                    {
+                        FirstName="Olle",
+                        Surname="Berg",
+                        PhoneNumber="123889977",
+                        PersonalNumber="199912241234",
+                        MembershipType=new MembershipType
+                        {
+                            Name="Gold"
+                        },
+                        Vehicles=null
+                    },
                     VehicleType=new VehicleType
                     {
                         Name="Car",
@@ -71,7 +83,18 @@ namespace Garage3.Frontend.FakeServices
                     Manufacturer="kalle",
                     PlateNumber="EFG345",
                     Wheels=4,
-                    Owner=null,
+                    Owner=new Member
+                    {
+                        FirstName="Olle",
+                        Surname="Berg",
+                        PhoneNumber="123889977",
+                        PersonalNumber="199912241234",
+                        MembershipType=new MembershipType
+                        {
+                            Name="Gold"
+                        },
+                        Vehicles=null
+                    },
                     VehicleType=new VehicleType
                     {
                         Name="Car",
@@ -91,9 +114,23 @@ namespace Garage3.Frontend.FakeServices
             return vehicleList;
         }
 
-        public Task<Vehicle> RegisterVehicle(RegisterVehicleArgs args, CancellationToken cancellationToken = default)
+        public async Task<Vehicle> RegisterVehicle(RegisterVehicleArgs args, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("fake register of vehicle" + args);
+
+            Vehicle v = new Vehicle
+            {
+                Id = 4,
+                Model = "Wesla",
+                Manufacturer = "Egon",
+                PlateNumber = "EBI654",
+                Wheels = 4,                
+                Color = VehicleColor.Blue
+
+            };
+
+            return v;
+
         }
     }
 }

@@ -46,11 +46,12 @@ namespace Garage3.Frontend.Controllers.Vehicles
 
 
         private VehicleOverviewModelView CreateModel(IEnumerable<Vehicle> vehicles)
-        { 
+        {
+            
             return new VehicleOverviewModelView  
             {
-                TableHead = new string[] { "PlateNumber", "Manufacturer", "VehicleType" },
-                Vehicles = vehicles.Select(v => new VehicleItemModelView { VehicleId = v.Id, PlateNumber = v.PlateNumber, Manufacturer = v.Manufacturer, VehicleType = v.VehicleType.Name })
+                TableHead = new string[] { "PlateNumber", "Owner", "Membership" ,"VehicleType", "ParkedTime" },
+                Vehicles = vehicles.Select(v => new VehicleItemModelView { VehicleId = v.Id, PlateNumber = v.PlateNumber, VehicleType = v.VehicleType.Name, Owner=$"{v.Owner.FirstName} {v.Owner.Surname}" })
             };
         }
 
@@ -158,9 +159,27 @@ namespace Garage3.Frontend.Controllers.Vehicles
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string OnEditSave(EditSaveData data)
+        public async Task<string> OnEditSave(EditSaveData data)
         {
-            //this.#vehicleId, plateNumber: plateNumber, model: model, manufacturer: manufacturer, color:color, wheels:wheels, type:type
+
+
+            Vehicle vehicle = await GetVehicleFromId(data.Id);
+
+            // todo validate and return message
+
+            vehicle.PlateNumber = data.PlateNumber;
+            vehicle.Manufacturer = data.Manufacturer;
+            vehicle.Model = data.Model;
+            vehicle.Wheels = data.Wheels;
+
+            VehicleColor color;
+            if (Enum.TryParse<VehicleColor>(data.Color, out color))
+            {
+                vehicle.Color = color;
+            }
+
+            // change type? 
+
 
             // edit the vehicle
             Debug.WriteLine("Vehicle Id:" + data.Id);
@@ -169,9 +188,6 @@ namespace Garage3.Frontend.Controllers.Vehicles
             Debug.WriteLine("Color:" + data.Color);
             Debug.WriteLine("Wheels:" + data.Wheels);
             Debug.WriteLine("Type:" + data.Type);
-
-
-            
 
 
             var result = new
@@ -187,7 +203,8 @@ namespace Garage3.Frontend.Controllers.Vehicles
         [ValidateAntiForgeryToken]
         public string OnCheckout(CheckoutData data)
         {
-            // edit the vehicle
+            
+            
             Debug.WriteLine("Garage Id:" + data.Id);
             Debug.WriteLine("Garage Item1:" + data.Item1);
             Debug.WriteLine("Garage Item2:" + data.Item2);
@@ -200,6 +217,47 @@ namespace Garage3.Frontend.Controllers.Vehicles
 
             return JsonConvert.SerializeObject(result);
         }
+
+
+
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string OnRegisterSave(RegisterSaveData data)
+        {
+            // !!color and type is missing in args def
+             
+            vehicleService.RegisterVehicle(new RegisterVehicleArgs 
+            {
+                PlateNumber=data.PlateNumber,
+                Manufacturer=data.Manufacturer,
+                Model=data.Model,
+                Wheels=data.Wheels
+            });
+            
+            
+            Debug.WriteLine("PlateNumber:" + data.PlateNumber);
+            Debug.WriteLine("Manufacturer:" + data.Manufacturer);
+            Debug.WriteLine("Color:" + data.Color);
+            Debug.WriteLine("Wheels:" + data.Wheels);
+            Debug.WriteLine("Type:" + data.Type);
+
+
+            var result = new
+            {
+                Success = true,
+                Message = "Message from controller"
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+
+
+
 
 
 
@@ -229,6 +287,18 @@ namespace Garage3.Frontend.Controllers.Vehicles
             public int Id { get; set; }
             public string Item1 { get; set; }
             public string Item2 { get; set; }
+        }
+
+        public class RegisterSaveData
+        {
+            
+            public string PlateNumber { get; set; }
+            public string Model { get; set; }
+            public string Manufacturer { get; set; }
+            public string Color { get; set; }
+            public int Wheels { get; set; }
+            public string Type { get; set; }
+
         }
 
 

@@ -71,35 +71,39 @@ namespace Garage3.Frontend.Controllers.Garages
             {
                 GarageId=(int)id, 
                 GarageName="Name of the garage",
-                TableHead = new string[]{"PlateNumber", "Manufacturer", "VehicleType" },
+                TableHead = new string[]{"PlateNumber", "Owner","Membership", "VehicleType", "ParkedTime" },  //todo make constant
                 Vehicles=new VehicleItemModelView[] 
                 {
                     new VehicleItemModelView
                     { 
                         VehicleId=1,
                         PlateNumber="ABC080",
-                        Manufacturer="Porsche",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=2,
                         PlateNumber="VIC0020",
-                        Manufacturer="Skoda",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=3,
                         PlateNumber="CMD064",
-                        Manufacturer="BMW",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=4,
                         PlateNumber="FYI076",
-                        Manufacturer="Honda",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="MotorCycle"
                     }
                 }
@@ -120,35 +124,39 @@ namespace Garage3.Frontend.Controllers.Garages
             {
                 GarageId = viewModel.GarageId,
                 GarageName=viewModel.GarageName,
-                TableHead = new string[] { "PlateNumber", "Manufacturer", "VehicleType" },
+                TableHead = new string[] { "PlateNumber", "Owner","Membership", "VehicleType", "ParkedTime" },
                 Vehicles = new VehicleItemModelView[]
                 {
                     new VehicleItemModelView
                     {
                         VehicleId=1,
                         PlateNumber="ABC080",
-                        Manufacturer="Porsche2",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=2,
                         PlateNumber="VIC0020",
-                        Manufacturer="Skoda2",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=3,
                         PlateNumber="CMD064",
-                        Manufacturer="BMW2",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="Car"
                     },
                     new VehicleItemModelView
                     {
                         VehicleId=4,
                         PlateNumber="FYI076",
-                        Manufacturer="Honda2",
+                        Owner="kalle Anka",
+                        ParkedTime="12days,4hours,6min",                        
                         VehicleType="MotorCycle"
                     }
                 }

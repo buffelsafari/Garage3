@@ -1,0 +1,71 @@
+﻿<!-- Register vehicle modal -->
+<div class="modal fade" id="registerVehicleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="registerDivId">
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">PlateNumber</span>
+                        </div>
+                        <input id="registerPlateNumber" type="text" class="form-control" placeholder="Plate Number">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Manufacturer</span>
+                        </div>
+                        <input id="registerManufacturer" type="text" class="form-control" placeholder="Manufacturer">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Model</span>
+                        </div>
+                        <input id="registerModel" type="text" class="form-control" placeholder="Model">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Number of Wheels</span>
+                        </div>
+                        <input id="registerWheels" type="number" class="form-control" placeholder="Number of wheels">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Color</span>
+                        </div>
+                        <input id="registerColor" type="text" class="form-control" placeholder="Color(todo dropdown)">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Vehicle type</span>
+                        </div>
+                        <input id="registerType" type="text" class="form-control" placeholder="Vehicle type(todo dropdown)">
+                    </div>
+
+
+                    <div id="registerFailMessage"></div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="RegisterSaveButton" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
