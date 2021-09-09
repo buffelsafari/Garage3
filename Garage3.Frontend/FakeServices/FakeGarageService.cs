@@ -20,12 +20,27 @@ namespace Garage3.Frontend.FakeServices
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<ParkingLot>> GetAvailableParkingLots(GetAvailableParkingLotsArgs args, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(string plateNumber, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(GetLotsForParkedVehicleArgs args, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<ParkingLot>> GetParkingLots(string garageName, DateTime pointInTime, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<ParkingLot>> GetParkingLots(GetParkingLotsArgs args, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
