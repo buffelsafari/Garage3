@@ -47,12 +47,31 @@ namespace Garage3.Frontend.Controllers.Vehicles
 
         private VehicleOverviewModelView CreateModel(IEnumerable<Vehicle> vehicles)
         {
+
+
+            var ve = vehicles.Select(v => new VehicleItemModelView 
+            { 
+                VehicleId = v.Id, 
+                PlateNumber = v.PlateNumber, 
+                VehicleType = "car",   //v.VehicleType.Name, 
+                Owner="berrus"  // todo get owner if exist
+            });
+
             
-            return new VehicleOverviewModelView  
+
+
+
+
+            VehicleOverviewModelView model = new VehicleOverviewModelView
             {
-                TableHead = new string[] { "PlateNumber", "Owner", "Membership" ,"VehicleType", "ParkedTime" },
-                Vehicles = vehicles.Select(v => new VehicleItemModelView { VehicleId = v.Id, PlateNumber = v.PlateNumber, VehicleType = v.VehicleType.Name, Owner=$"{v.Owner.FirstName} {v.Owner.Surname}" })
+                TableHead = new string[] { "PlateNumber", "Owner", "Membership", "VehicleType", "ParkedTime" },
+
+                Vehicles = ve
             };
+
+            
+
+            return model;
         }
 
         private async Task<Vehicle> GetVehicleFromId(int id)

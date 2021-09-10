@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Garage3.Frontend.FakeServices;
 using Garage3.Services;
 using Garage3.Frontend.Services.ViewServices;
+using Garage3.Services.VehicleService;
+using Garage3.Services.MemberService;
 
 namespace Garage3.Frontend
 {
@@ -32,10 +34,12 @@ namespace Garage3.Frontend
 
             services.AddScoped<IViewService, ViewService>();
 
+            services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IMemberService, MemberService>();
 
             services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
-            services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------
-            services.AddScoped<IMemberService, FakeMemberService>(); // ------------------------fake testobject-------------------------------------------
+            //services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------
+            //services.AddScoped<IMemberService, FakeMemberService>(); // ------------------------fake testobject-------------------------------------------
             services.AddScoped<IBookingService, FakeBookingService>(); // ------------------------fake testobject-------------------------------------------
 
             services.AddDbContext<GarageContext>(options =>
