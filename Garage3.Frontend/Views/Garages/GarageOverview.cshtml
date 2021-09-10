@@ -1,4 +1,5 @@
 ﻿@model Garage3.Frontend.Models.ViewModels.GarageOverviewModelView
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
@@ -40,9 +41,14 @@
                 <input type="text" class="form-control" asp-for="OwnersPersonalNumber" placeholder="PersonalNumber" />
                 <input type="text" class="form-control" asp-for="Manufacturer" placeholder="Manufacturer" />
                 <input type="text" class="form-control" asp-for="Model" placeholder="Model" />
-                <input type="text" class="form-control" asp-for="VehicleTypeName" placeholder="VehicleType" />
-                <input type="text" class="form-control" asp-for="Wheels" placeholder="Wheels" />
-                <input type="text" class="form-control" asp-for="Color" placeholder="Color" />
+                <select asp-for="VehicleTypeName" asp-items="@service.GetVehicleTypes()" class="form-control">
+                    <option selected="selected" value="">VehicleType</option>
+                </select>                
+                <input type="number" class="form-control" asp-for="Wheels" value="" placeholder="Wheels" />
+                <select asp-for="Color" asp-items="@service.GetVehicleColor()" class="form-control">
+                    <option selected="selected" value="">Color</option>
+                </select>
+
 
 
             </div>
@@ -78,29 +84,29 @@
     <tbody>
         @foreach (var item in Model.Vehicles)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlateNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberShip)
-            </td>            
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkedTime)
-            </td>
-            <td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlateNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberShip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkedTime)
+                </td>
+                <td>
 
-                <button type="button" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
-                <button type="button" class="editButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
-                <button type="button" class="checkoutButton btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
-            </td>
-        </tr>
+                    <button type="button" class="detailsButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" class="checkoutButton btn btn-primary ml-5" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

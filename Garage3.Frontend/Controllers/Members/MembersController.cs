@@ -99,6 +99,115 @@ namespace Garage3.Frontend.Controllers.Members
         }
 
 
+        private async Task<Member> GetMemberFromId(int id)
+        {
+            IEnumerable<Member> members = await memberService.FindMembers(
+                new FindMemberArgs
+                {
+
+                });
+            return members.Where(v => v.Id == id).First();
+        }
+
+
+        public async Task<string> OnMemberDetailsButton(int id)  // todo move to vehicle controller
+        {
+
+       
+
+
+            Member member = await GetMemberFromId(id);
+
+            // todo exeptions
+            MemberDetailModelView model = new MemberDetailModelView
+            {
+                FirstName=member.FirstName,
+                Surname=member.Surname,
+                PhoneNumber=member.PhoneNumber,
+                PersonalNumber=member.PersonalNumber,
+                MembershipType=member.MembershipType.Name
+
+            };
+
+
+            
+
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+
+
+        public async Task<string> OnVehicleEditButton(int id)  // todo maybe refactor with above
+        {
+
+            Member member = await GetMemberFromId(id);
+
+            // todo exeptions
+            MemberDetailModelView model = new MemberDetailModelView
+            {
+                FirstName = member.FirstName,
+                Surname = member.Surname,
+                PhoneNumber = member.PhoneNumber,
+                PersonalNumber = member.PersonalNumber,
+                MembershipType = member.MembershipType.Name
+
+            };
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<string> OnEditSave(EditSaveData data)
+        {
+
+
+            Member member = await GetMemberFromId(data.Id);
+
+            // todo validate and return message
+
+            member.FirstName = data.FirstName;
+            member.Surname = data.Surname;
+            member.PhoneNumber = data.PhoneNumber;
+            member.PersonalNumber = member.PersonalNumber;
+            
+            //member.MembershipType todo change membership type
+                        
+
+            // change type? 
+
+
+            // edit the vehicle
+            Debug.WriteLine("member Id:" + data.Id);
+            Debug.WriteLine("FirstName:" + data.FirstName);
+            Debug.WriteLine("Surname:" + data.Surname);
+            Debug.WriteLine("PhoneNumber:" + data.PhoneNumber);
+            Debug.WriteLine("PersonalNumber:" + data.PersonalNumber);
+            Debug.WriteLine("MembershipType:" + data.MembershipType);
+
+
+            var result = new
+            {
+                Success = true,
+                Message = "Message from controller"
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+
+        public class EditSaveData
+        {
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string Surname { get; set; }
+            public string PhoneNumber { get; set; }
+            public string PersonalNumber { get; set; }            
+            public string MembershipType { get; set; }
+
+        }
 
 
     }

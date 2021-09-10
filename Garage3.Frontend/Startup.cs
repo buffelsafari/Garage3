@@ -12,6 +12,7 @@ using Garage3.Data;
 using Microsoft.EntityFrameworkCore;
 using Garage3.Frontend.FakeServices;
 using Garage3.Services;
+using Garage3.Frontend.Services.ViewServices;
 
 namespace Garage3.Frontend
 {
@@ -28,6 +29,9 @@ namespace Garage3.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<IViewService, ViewService>();
+
 
             services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
             services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------

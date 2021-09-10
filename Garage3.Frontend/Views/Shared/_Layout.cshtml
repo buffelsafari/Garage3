@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="~/css/garage3.css" />
 </head>
 <body>
-    <partial name="~/Views/Shared/_NewVehicleTypeModal.cshtml" />  
+    <partial name="~/Views/Shared/_NewVehicleTypeModal.cshtml" />
     <partial name="~/Views/Shared/_VehicleDetailsModal.cshtml" />
     <partial name="~/Views/Shared/_VehicleEditModal.cshtml" />
     <partial name="~/Views/Shared/_CheckoutModal.cshtml" />
     <partial name="~/Views/Shared/_RegisterVehicleModal.cshtml" />
     <partial name="~/Views/Shared/_RegisterMemberModal.cshtml" />
+    <partial name="~/Views/Shared/_MemberDetailsModal.cshtml" />
+    <partial name="~/Views/Shared/_MemberEditModal.cshtml" />
 
 
     <header>
@@ -44,8 +46,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Index">Members</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="Index">Bookings</a>
-                        </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="Index">Checkin</a>
+                        </li>                        
                     </ul>
                 </div>
             </div>

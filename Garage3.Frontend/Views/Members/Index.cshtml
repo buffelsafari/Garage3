@@ -1,19 +1,23 @@
 ﻿@model Garage3.Frontend.Models.ViewModels.MembersOverviewModelView
 
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
     @Html.AntiForgeryToken()
 }
 
 
-    <script src="/js/MemberRegisterHandler.js"></script>
-    <script>
-    window.onload = function (e)
-    {
-       
+<script src="/js/MemberRegisterHandler.js"></script>
+<script src="/js/MemberDetailsHandler.js"></script>
+<script src="/js/MemberEditHandler.js"></script>
+<script>
+    window.onload = function (e) {
+        new MemberEditHandler();
+        new MemberDetailsHandler();
         new MemberRegisterHandler();
     }
-    </script>
+</script>
 
 
 
@@ -35,9 +39,11 @@
                     <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="PhoneNumber" />
                     <input type="text" class="form-control" asp-for="FirstName" placeholder="FirstName" />
                     <input type="text" class="form-control" asp-for="Surname" placeholder="Surname" />
-                    <input type="text" class="form-control" asp-for="MembershipType" placeholder="MembershipType" />
-
                     
+                    <select asp-for="MembershipType" asp-items="@service.GetMembershipTypes()" class="form-control">
+                        <option selected="selected" value="">MembershipType</option>
+                    </select>
+
 
                 </div>
             </form>
@@ -66,7 +72,7 @@
 
     <tbody>
         @foreach (var item in Model.Members)
-         {
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.PersonalNumber)
@@ -80,13 +86,12 @@
                 <td>
 
                     <button type="button" class="detailsButton btn btn-primary float-left mr-3" data-id="@item.Id" data-toggle="modal" data-target="#MemberDetailsModal">Details</button>
-                    <button type="button" class="editButton btn btn-primary float-left" data-id="@item.Id" data-toggle="modal" data-target="#MemberEditModal">Edit</button>                    
+                    <button type="button" class="editButton btn btn-primary float-left" data-id="@item.Id" data-toggle="modal" data-target="#MemberEditModal">Edit</button>
                 </td>
             </tr>
-         }
+        }
     </tbody>
 </table>
 
 
 
- 

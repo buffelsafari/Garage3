@@ -1,4 +1,8 @@
 ﻿<!-- Register vehicle modal -->
+
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
+
 <div class="modal fade" id="registerVehicleModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -45,14 +49,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Color</span>
                         </div>
-                        <input id="registerColor" type="text" class="form-control" placeholder="Color(todo dropdown)">
+                        <select id="registerColor" asp-items="@service.GetVehicleColor()" class="form-control"></select>
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Vehicle type</span>
                         </div>
-                        <input id="registerType" type="text" class="form-control" placeholder="Vehicle type(todo dropdown)">
+                        <select id="registerType" asp-items="@service.GetVehicleTypes()" class="form-control"></select>                        
                     </div>
 
 

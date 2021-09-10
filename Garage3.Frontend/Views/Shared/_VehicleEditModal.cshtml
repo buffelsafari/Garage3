@@ -1,4 +1,6 @@
 ﻿<!-- Edit modal -->
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
 <div class="modal fade" id="EditModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -45,14 +47,16 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Color</span>
                         </div>
-                        <input id="editColor" type="text" class="form-control" placeholder="Color(todo dropdown)">
+                        <select id="editColor" asp-items="@service.GetVehicleColor()" class="form-control"></select>
+
+                        
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Vehicle type</span>
-                        </div>
-                        <input id="editType" type="text" class="form-control" placeholder="Vehicle type(todo dropdown)">
+                        </div>                        
+                        <select id="editType" asp-items="@service.GetVehicleTypes()" class="form-control"></select>
                     </div>
 
 
@@ -71,9 +75,9 @@
 </div>
 
 
-        @*public string PlateNumber { get; set; }
-        public string Model { get; set; }
-        public string Manufacturer { get; set; }
-        public string Color { get; set; }
-        public int Wheels { get; set; }
-        public string Type { get; set; }*@
+@*public string PlateNumber { get; set; }
+    public string Model { get; set; }
+    public string Manufacturer { get; set; }
+    public string Color { get; set; }
+    public int Wheels { get; set; }
+    public string Type { get; set; }*@
