@@ -32,6 +32,7 @@ namespace Garage3.Frontend
             services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
             services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------
             services.AddScoped<IMemberService, FakeMemberService>(); // ------------------------fake testobject-------------------------------------------
+            services.AddScoped<IBookingService, FakeBookingService>(); // ------------------------fake testobject-------------------------------------------
 
             services.AddDbContext<GarageContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GarageContext")));

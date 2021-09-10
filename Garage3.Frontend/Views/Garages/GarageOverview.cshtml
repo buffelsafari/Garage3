@@ -24,30 +24,41 @@
 
 
 
+<div class="row">
+    <div class="col-12">
 
+        <form asp-action="Search">
+            <input type="hidden" asp-for="GarageId" />
+            <input type="hidden" asp-for="GarageName" />
+            <div class="input-group">
 
-<div class="container m-0 p-0">
-    <div class="row">
-        <div class="col-10">
-
-            <form asp-action="Search">
-                <input type="hidden" asp-for="GarageId" />
-                <input type="hidden" asp-for="GarageName" />
-
-                <div class="input-group">
-                    <input type="text" class="form-control" name="title" placeholder="Search on plateNumber" />
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
-                    </div>
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
                 </div>
-            </form>
 
-        </div>
-        <div class="col-2">
-            <button type="button" id="newVehicleTypeButton" class="btn btn-primary" data-id="@Model.GarageId" data-toggle="modal" data-target="#newVehicleTypeModal">New Vehicle Type</button>
-        </div>
+                <input type="text" class="form-control" asp-for="PlateNumber" placeholder="PlateNumber" />
+                <input type="text" class="form-control" asp-for="OwnersPersonalNumber" placeholder="PersonalNumber" />
+                <input type="text" class="form-control" asp-for="Manufacturer" placeholder="Manufacturer" />
+                <input type="text" class="form-control" asp-for="Model" placeholder="Model" />
+                <input type="text" class="form-control" asp-for="VehicleTypeName" placeholder="VehicleType" />
+                <input type="text" class="form-control" asp-for="Wheels" placeholder="Wheels" />
+                <input type="text" class="form-control" asp-for="Color" placeholder="Color" />
+
+
+            </div>
+        </form>
+
+    </div>
+    <div class="col-12">
+        <button type="button" id="newVehicleTypeButton" class="btn btn-primary float-lg-right mt-5" data-id="@Model.GarageId" data-toggle="modal" data-target="#newVehicleTypeModal">New Vehicle Type</button>
     </div>
 </div>
+
+
+
+
+
+
 
 
 <table class="table">
