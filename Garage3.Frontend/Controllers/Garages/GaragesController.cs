@@ -162,9 +162,8 @@ namespace Garage3.Frontend.Controllers.Garages
             var model = new
             {
                 GarageId = id,
-                item1 = 1,
-                item2 = 2,
-                item3 = 3
+                GarageName="-Garage-Name-",  //todo get garage from id
+                                
             };
 
             return JsonConvert.SerializeObject(model);
@@ -180,16 +179,17 @@ namespace Garage3.Frontend.Controllers.Garages
             vehicleTypeService.RegisterVehicleType(new NewVehicleTypeArgs
             {
                 GarageId = data.Id,
-                Name = "Car",
-                RequiredParkingLots = 1,
-                BasicFee = 13,
+                Name = data.Name,
+                RequiredParkingLots = data.RequiredParkingLots,
+                BasicFee = data.BasicFee,
 
             });
             
             // todo create a new vehicleType
             Debug.WriteLine("Garage Id:"+data.Id);
-            Debug.WriteLine("Garage Item1:" + data.Item1);
-            Debug.WriteLine("Garage Item2:" + data.Item2);
+            Debug.WriteLine("Garage Item1:" + data.Name);
+            Debug.WriteLine("Garage Item2:" + data.RequiredParkingLots);
+            Debug.WriteLine("Garage Item2:" + data.BasicFee);
 
 
             var result = new
@@ -207,12 +207,12 @@ namespace Garage3.Frontend.Controllers.Garages
         public class NewVehicleSaveData  // todo use modelviews
         { 
             public int Id { get; set; }
-            public string Item1 { get; set; }
-            public string Item2 { get; set; }
+            public string Name { get; set; }
+            public int RequiredParkingLots { get; set; }
+            public decimal BasicFee { get; set; }
         }
 
-   
-
+        
 
     }
 }

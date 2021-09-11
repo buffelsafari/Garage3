@@ -38,9 +38,9 @@ namespace Garage3.Services
             Debug.WriteLine("trying to create VehicleType");
             VehicleType vehicleType = context.CreateProxy<VehicleType>();
 
-            vehicleType.Name = "kebabpulka";// args.Name;
-            vehicleType.RequiredParkingLots = 1;//args.RequiredParkingLots;
-            vehicleType.BasicFee = 12;// args.BasicFee;
+            vehicleType.Name = args.Name;
+            vehicleType.RequiredParkingLots = args.RequiredParkingLots;
+            vehicleType.BasicFee = args.BasicFee;
             vehicleType.Garage = garage;
             garage.VehicleTypes.Add(vehicleType);
             

@@ -23,6 +23,9 @@ namespace Garage3.Services
         public string PlateNumber { get; set; }
 
         public int Wheels { get; set; }
+
+        public string VehicleTypeName { get; set; }
+        public string Color { get; set; }
     }
 
     public class FindVehicleArgs

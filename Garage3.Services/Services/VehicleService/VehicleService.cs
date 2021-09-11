@@ -36,13 +36,21 @@ namespace Garage3.Services.VehicleService
         }
 
         public async Task<Vehicle> RegisterVehicle(RegisterVehicleArgs args, CancellationToken cancellationToken = default)
-        {            
+        {
+            
+            var vType=context.VehicleTypes.Where(t=>t.Name==args.VehicleTypeName).First();
+
+
             Vehicle vehicle = context.Vehicles.CreateProxy<Vehicle>();
             vehicle.PlateNumber = args.PlateNumber;
             vehicle.Manufacturer = args.Manufacturer;
             vehicle.Model = args.Model;
-            vehicle.Color = VehicleColor.Blue;            //todo add color to args
+            vehicle.Color = Enum.Parse<VehicleColor>(args.Color);          
             vehicle.Owner = null;
+            vehicle.VehicleType = vType;
+            vehicle.Wheels = args.Wheels;
+
+            vType.Vehicles.Add(vehicle);
 
             context.Vehicles.Add(vehicle);
 

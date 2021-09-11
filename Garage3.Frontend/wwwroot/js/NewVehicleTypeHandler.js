@@ -20,13 +20,17 @@
                 let element = document.getElementById("newVehicleTypeDivId");
                 let details = JSON.parse(result);
 
-                element.innerHTML = "";
+                document.getElementById("NewVehicleTypeGarageName").innerHTML = details.GarageName;
+                //element.innerHTML = "";
                 element.innerHTML += "Garage id:" + details.GarageId + "<br>";
-                element.innerHTML += details.item1;
-                element.innerHTML += details.item2;
-                element.innerHTML += details.item3;
+                element.innerHTML += details.GarageName;
+                
 
                 console.log("result is: " + result)
+
+               
+
+
             }
         });
 
@@ -39,20 +43,24 @@
 
         console.log(this.#currentGarageId);
 
+        let name = document.getElementById("NewVehicleTypeName").value;
+        let requiredParkingLots = document.getElementById("NewVehicleTypeReqParkingLots").value;
+        let basicFee = document.getElementById("NewVehicleTypeBasicFee").value;
+
         $.ajax({
             type: "POST",           
             url: "/Garages/OnNewVehicleTypeSave",
             data: {
                 
-                __RequestVerificationToken: token, Id: this.#currentGarageId, Item1: "hello", Item2: "world"
+                __RequestVerificationToken: token, Id: this.#currentGarageId, name: name, requiredParkingLots: requiredParkingLots,basicFee:basicFee
             },
             cache: false,
             success: (result) => {
-                let element = document.getElementById("newVehicleTypeDivId");
+                
                 let details = JSON.parse(result);
 
-
-                element.innerHTML += "is valid?:" + details.Success + "<br>";
+                document.getElementById("newVehicletypeFailMessage").innerHTML = "is valid?:" + details.Success + "<br>";
+                
 
                 console.log("result is: " + result)
             }

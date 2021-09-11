@@ -25,6 +25,9 @@ namespace Garage3.Frontend.Services.ViewServices
                 items.Add(new SelectListItem(t.ToString(), t.ToString(), false, false));
             }
 
+
+           
+
             return items;
         }
 
@@ -43,14 +46,21 @@ namespace Garage3.Frontend.Services.ViewServices
         public async Task<IEnumerable<SelectListItem>> GetVehicleTypes()
         {
             
-            var typeList=vehicleTypeService.GetVehicleTypes();
-            List<SelectListItem> items = new List<SelectListItem>();
+            //var typeList=vehicleTypeService.GetVehicleTypes();
+            //List<SelectListItem> items = new List<SelectListItem>();
 
-            foreach (var item in await typeList)
-            {
-                items.Add(new SelectListItem(item.Name, item.Id.ToString(), false, false));
-            }
-            
+            //foreach (var item in await typeList)
+            //{
+            //    items.Add(new SelectListItem(item.Name, item.Name, false, false));
+            //}
+
+
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem("fake gold", "1", false, false));
+            items.Add(new SelectListItem("fake silver", "2", false, false));
+            items.Add(new SelectListItem("fake bronze", "3", false, false));
+
             return items;
         }
 

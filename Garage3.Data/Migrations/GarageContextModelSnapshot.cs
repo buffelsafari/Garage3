@@ -112,31 +112,31 @@ namespace Garage3.Data.Migrations
                         {
                             Id = 1,
                             BasicFee = 10m,
-                            Created = new DateTime(2021, 9, 10, 18, 5, 42, 193, DateTimeKind.Local).AddTicks(7405),
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 665, DateTimeKind.Local).AddTicks(7084),
                             Description = "nice garage",
                             Name = "SouthPark"
                         },
                         new
                         {
                             Id = 2,
-                            BasicFee = 10m,
-                            Created = new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4536),
+                            BasicFee = 20m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(336),
                             Description = "also nice garage",
                             Name = "NorthPark"
                         },
                         new
                         {
                             Id = 3,
-                            BasicFee = 10m,
-                            Created = new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4581),
+                            BasicFee = 30m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(370),
                             Description = "Nice view",
                             Name = "WestPark"
                         },
                         new
                         {
                             Id = 4,
-                            BasicFee = 10m,
-                            Created = new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4585),
+                            BasicFee = 40m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(378),
                             Description = "Close to trainstation",
                             Name = "EastPark"
                         });

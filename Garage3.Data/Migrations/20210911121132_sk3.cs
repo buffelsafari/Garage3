@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Garage3.Data.Migrations
 {
-    public partial class hasdata2 : Migration
+    public partial class sk3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,10 @@ namespace Garage3.Data.Migrations
                 columns: new[] { "Id", "BasicFee", "Created", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 10m, new DateTime(2021, 9, 10, 18, 5, 42, 193, DateTimeKind.Local).AddTicks(7405), "nice garage", "SouthPark" },
-                    { 2, 10m, new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4536), "also nice garage", "NorthPark" },
-                    { 3, 10m, new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4581), "Nice view", "WestPark" },
-                    { 4, 10m, new DateTime(2021, 9, 10, 18, 5, 42, 196, DateTimeKind.Local).AddTicks(4585), "Close to trainstation", "EastPark" }
+                    { 1, 10m, new DateTime(2021, 9, 11, 14, 11, 31, 665, DateTimeKind.Local).AddTicks(7084), "nice garage", "SouthPark" },
+                    { 2, 20m, new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(336), "also nice garage", "NorthPark" },
+                    { 3, 30m, new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(370), "Nice view", "WestPark" },
+                    { 4, 40m, new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(378), "Close to trainstation", "EastPark" }
                 });
         }
 

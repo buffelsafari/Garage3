@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage3.Data.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    [Migration("20210910115922_init1")]
-    partial class init1
+    [Migration("20210911121132_sk3")]
+    partial class sk3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,6 +108,40 @@ namespace Garage3.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Garages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BasicFee = 10m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 665, DateTimeKind.Local).AddTicks(7084),
+                            Description = "nice garage",
+                            Name = "SouthPark"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BasicFee = 20m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(336),
+                            Description = "also nice garage",
+                            Name = "NorthPark"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BasicFee = 30m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(370),
+                            Description = "Nice view",
+                            Name = "WestPark"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BasicFee = 40m,
+                            Created = new DateTime(2021, 9, 11, 14, 11, 31, 668, DateTimeKind.Local).AddTicks(378),
+                            Description = "Close to trainstation",
+                            Name = "EastPark"
+                        });
                 });
 
             modelBuilder.Entity("Garage3.Data.Entities.Member", b =>

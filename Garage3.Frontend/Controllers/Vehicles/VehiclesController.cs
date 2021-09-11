@@ -94,11 +94,12 @@ namespace Garage3.Frontend.Controllers.Vehicles
         /// <returns>json with vehicle data</returns>
         public async Task<string> OnVehicleDetailsButton(int id)  // todo move to vehicle controller
         {
-            
 
             
 
             Vehicle vehicle = await GetVehicleFromId(id);
+
+            
 
             // todo exeptions
             VehicleDetailModelView model = new VehicleDetailModelView
@@ -248,13 +249,15 @@ namespace Garage3.Frontend.Controllers.Vehicles
         public string OnRegisterSave(RegisterSaveData data)
         {
             // !!color and type is missing in args def
-             
-            vehicleService.RegisterVehicle(new RegisterVehicleArgs 
+
+            vehicleService.RegisterVehicle(new RegisterVehicleArgs
             {
-                PlateNumber=data.PlateNumber,
-                Manufacturer=data.Manufacturer,
-                Model=data.Model,
-                Wheels=data.Wheels
+                PlateNumber = data.PlateNumber,
+                Manufacturer = data.Manufacturer,
+                Model = data.Model,
+                Wheels = data.Wheels,
+                VehicleTypeName = data.Type,
+                Color=data.Color,
             });
             
             
