@@ -3,6 +3,7 @@ using Garage3.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,13 +17,15 @@ namespace Garage3.Services.MemberService
         public MemberService(GarageContext context)
         {
             this.context = context;
+
+            
         }
 
         public async Task<IEnumerable<Member>> FindMembers(FindMemberArgs args, CancellationToken cancellationToken = default)
         {
 
             return await context.Members.ToListAsync();//todo add search
-            
+
         }
 
         public async Task<Member> RegisterMember(RegisterMemberArgs args, CancellationToken cancellationToken = default)
@@ -38,5 +41,17 @@ namespace Garage3.Services.MemberService
             await context.SaveChangesAsync();
             return member;
         }
+
+
+
+
+
+
+
+
+
     }
+
+
+    
 }

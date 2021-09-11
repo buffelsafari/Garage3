@@ -10,6 +10,6 @@ namespace Garage3.Frontend.Services.ViewServices
     {
         IEnumerable<SelectListItem> GetVehicleColor();
         IEnumerable<SelectListItem> GetMembershipTypes();
-        IEnumerable<SelectListItem> GetVehicleTypes();
+        Task<IEnumerable<SelectListItem>> GetVehicleTypes();
     }
 }

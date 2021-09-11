@@ -56,7 +56,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Vehicle type</span>
                         </div>                        
-                        <select id="editType" asp-items="@service.GetVehicleTypes()" class="form-control"></select>
+                        <select id="editType" asp-items="@await service.GetVehicleTypes()" class="form-control"></select>
                     </div>
 
 

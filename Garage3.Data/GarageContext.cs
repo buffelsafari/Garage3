@@ -41,6 +41,45 @@ namespace Garage3.Data
 
             modelBuilder.HasDefaultSchema("Garage3");
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(GarageMap).Assembly);
+
+
+            modelBuilder.Entity<Garage>().HasData(
+                new Garage
+                {
+                    Id = 1,
+                    Name = "SouthPark",
+                    Description = "nice garage",
+                    BasicFee = 10,
+
+                },
+                new Garage
+                {
+                    Id = 2,
+                    Name = "NorthPark",
+                    Description = "also nice garage",
+                    BasicFee=20,
+                },
+                new Garage
+                {
+                    Id = 3,
+                    Name = "WestPark",
+                    Description = "Nice view",
+                    BasicFee=30,
+                },
+                new Garage
+                {
+                    Id = 4,
+                    Name = "EastPark",
+                    Description = "Close to trainstation",
+                    BasicFee=40
+                }
+                );
+            
+                       
+
+             
+            
+
         }
     }
 }

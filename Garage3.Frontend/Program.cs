@@ -1,5 +1,7 @@
 using System;
+using Garage3.Data;
 using Garage3.Data.Seed;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +23,8 @@ namespace Garage3.Frontend
                 try
                 {
                     SeedData.InitAsync(services).Wait();
+                    
+
                 }
                 catch (Exception e)
                 {
@@ -29,10 +33,11 @@ namespace Garage3.Frontend
                 }
 
             }
+            
 
             host.Run();
             
-            // CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

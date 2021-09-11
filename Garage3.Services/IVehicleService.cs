@@ -12,6 +12,8 @@ namespace Garage3.Services
         Task<IEnumerable<Vehicle>> FindVehicles(FindVehicleArgs args, CancellationToken cancellationToken = default);
     }
 
+    
+
     public class RegisterVehicleArgs
     {
         public string Model { get; set; }

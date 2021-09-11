@@ -16,6 +16,7 @@ using Garage3.Frontend.Services.ViewServices;
 using Garage3.Services.VehicleService;
 using Garage3.Services.MemberService;
 
+
 namespace Garage3.Frontend
 {
     public class Startup
@@ -30,20 +31,28 @@ namespace Garage3.Frontend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddControllersWithViews();
 
             services.AddScoped<IViewService, ViewService>();
 
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IGarageService, GarageService>();
+            services.AddScoped<IVehicleTypeService, VehicleTypeService>();
+            
 
-            services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
+            //services.AddScoped<IGarageService, FakeGarageService>(); // ------------------------fake testobject-------------------------------------------
             //services.AddScoped<IVehicleService, FakeVehicleService>(); // ------------------------fake testobject-------------------------------------------
             //services.AddScoped<IMemberService, FakeMemberService>(); // ------------------------fake testobject-------------------------------------------
             services.AddScoped<IBookingService, FakeBookingService>(); // ------------------------fake testobject-------------------------------------------
 
             services.AddDbContext<GarageContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GarageContext")));
+
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

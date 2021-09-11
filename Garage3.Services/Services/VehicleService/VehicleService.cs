@@ -32,9 +32,6 @@ namespace Garage3.Services.VehicleService
 
             return await context.Vehicles.Where(v => !plateOption || v.PlateNumber.Contains(args.PlateNumber)).ToListAsync(); //todo rest of the search
 
-            
-            
-
 
         }
 

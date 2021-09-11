@@ -39,7 +39,7 @@
                     <input type="text" class="form-control" asp-for="OwnersPersonalNumber" placeholder="PersonalNumber" />
                     <input type="text" class="form-control" asp-for="Manufacturer" placeholder="Manufacturer" />
                     <input type="text" class="form-control" asp-for="Model" placeholder="Model" />
-                    <select asp-for="VehicleTypeName" asp-items="@service.GetVehicleTypes()" class="form-control">
+                    <select asp-for="VehicleTypeName" asp-items="@await service.GetVehicleTypes()" class="form-control">
                         <option selected="selected" value="">VehicleType</option>
                     </select>
                     

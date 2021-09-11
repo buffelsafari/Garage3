@@ -1,4 +1,5 @@
-﻿using Garage3.Frontend.Models.ViewModels;
+﻿using Garage3.Data.Entities;
+using Garage3.Frontend.Models.ViewModels;
 using Garage3.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -13,50 +14,28 @@ namespace Garage3.Frontend.Controllers.Garages
     public class GaragesController : Controller
     {
         private IGarageService garageService;
-        public GaragesController(IGarageService garageService)
+        private IVehicleTypeService vehicleTypeService;
+        public GaragesController(IGarageService garageService, IVehicleTypeService vehicleTypeService)
         {
             this.garageService = garageService;
+            this.vehicleTypeService = vehicleTypeService;
         }
         
 
         public async Task<IActionResult> Index()  
         {
+            var garages = await garageService.FindGarages(new FindGarageArgs { });
 
+            var model=garages.Select(g => new GaragesModelView 
+            { 
+                GarageId=g.Id,
+                Name=g.Name,
+                Description=g.Description,
+                HourlyRate=g.BasicFee
+            });
+            
 
-            List<GaragesModelView> modelList = new List<GaragesModelView>{
-
-                new GaragesModelView
-                {
-                    GarageId=1,
-                    Name = "SouthPark",
-                    Description = "The Greatest garage ever",
-                    HourlyRate = 12
-                },
-                new GaragesModelView
-                {
-                    GarageId=2,
-                    Name = "NorthPark",
-                    Description = "The lesser evil",
-                    HourlyRate = 8
-                },
-                new GaragesModelView
-                {
-                    GarageId=3,
-                    Name = "WestPark",
-                    Description = "Not the best",
-                    HourlyRate = 4
-                }, 
-                new GaragesModelView
-                {
-                    GarageId=4,
-                    Name = "EastPark",
-                    Description = "Cheapest ever",
-                    HourlyRate = 2
-                }
-            };
-
-
-            return View(modelList);
+            return View(model);
         }
 
 
@@ -66,12 +45,15 @@ namespace Garage3.Frontend.Controllers.Garages
             {
                 return NotFound();
             }
+            
+            var garages = await garageService.FindGarages(new FindGarageArgs {GarageId=id});
+            Garage garage = garages.First();
 
             GarageOverviewModelView model = new GarageOverviewModelView
             {
                 GarageId=(int)id, 
-                GarageName="Name of the garage",
-                TableHead = new string[]{"PlateNumber", "Owner","Membership", "VehicleType", "ParkedTime" },  //todo make constant
+                GarageName=garage.Name,
+                TableHead = new string[]{"PlateNumber", "Owner", "Membership", "VehicleType", "ParkedTime" },  //todo make constant
                 Vehicles=new VehicleItemModelView[] 
                 {
                     new VehicleItemModelView
@@ -194,6 +176,16 @@ namespace Garage3.Frontend.Controllers.Garages
         [ValidateAntiForgeryToken]
         public string OnNewVehicleTypeSave(NewVehicleSaveData data)
         {
+
+            vehicleTypeService.RegisterVehicleType(new NewVehicleTypeArgs
+            {
+                GarageId = data.Id,
+                Name = "Car",
+                RequiredParkingLots = 1,
+                BasicFee = 13,
+
+            });
+            
             // todo create a new vehicleType
             Debug.WriteLine("Garage Id:"+data.Id);
             Debug.WriteLine("Garage Item1:" + data.Item1);

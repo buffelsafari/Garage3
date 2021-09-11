@@ -1,4 +1,5 @@
 ﻿using Garage3.Data.Entities;
+using Garage3.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,11 @@ namespace Garage3.Frontend.Services.ViewServices
 {
     public class ViewService:IViewService
     {
+        IVehicleTypeService vehicleTypeService; 
+        public ViewService(IVehicleTypeService vehicleTypeService)
+        {
+            this.vehicleTypeService = vehicleTypeService;
+        }
 
         public IEnumerable<SelectListItem> GetVehicleColor()
         {
@@ -34,15 +40,17 @@ namespace Garage3.Frontend.Services.ViewServices
             return items;
         }
 
-        public IEnumerable<SelectListItem> GetVehicleTypes()
+        public async Task<IEnumerable<SelectListItem>> GetVehicleTypes()
         {
-            //todo inser real
+            
+            var typeList=vehicleTypeService.GetVehicleTypes();
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem("fake Car", "1", false, false));
-            items.Add(new SelectListItem("fake MotorCycle", "2", false, false));
-            items.Add(new SelectListItem("fake X-wing", "3", false, false));
 
-
+            foreach (var item in await typeList)
+            {
+                items.Add(new SelectListItem(item.Name, item.Id.ToString(), false, false));
+            }
+            
             return items;
         }
 

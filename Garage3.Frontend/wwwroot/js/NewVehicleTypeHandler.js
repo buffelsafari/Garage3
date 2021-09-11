@@ -37,11 +37,13 @@
         var form = $('#__AjaxAntiForgeryForm');
         var token = $('input[name="__RequestVerificationToken"]', form).val();
 
+        console.log(this.#currentGarageId);
 
         $.ajax({
             type: "POST",           
             url: "/Garages/OnNewVehicleTypeSave",
             data: {
+                
                 __RequestVerificationToken: token, Id: this.#currentGarageId, Item1: "hello", Item2: "world"
             },
             cache: false,
