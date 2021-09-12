@@ -1,0 +1,50 @@
+﻿ 
+<!-- new Vehicle type modal -->
+<div class="modal fade" id="newVehicleTypeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Vehicle Type</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="newVehicleTypeDivId">
+                    <h3 id="NewVehicleTypeGarageName">Garage Name</h3>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input id="NewVehicleTypeName" type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">RequiredParkingLots</span>
+                        </div>
+                        <input id="NewVehicleTypeReqParkingLots" type="number" class="form-control" placeholder="RequiredParkingLots">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">BasicFee</span>
+                        </div>
+                        <input id="NewVehicleTypeBasicFee" type="number" class="form-control" placeholder="Basic Fee">
+                    </div>
+
+
+
+
+                </div>
+                <div id="newVehicletypeFailMessage"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="newVehicleTypeSaveButton" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

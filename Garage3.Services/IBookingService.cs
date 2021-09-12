@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Garage3.Data.Entities;
 
 namespace Garage3.Services
 {
     public interface IBookingService
     {
-        Result<Booking> CheckinVehicle(MembershipType membershipType, string plateNumber, DateTime timeOfArrival,
-            IEnumerable<string> parkingLotNumbers);
+        Task<Booking> CheckinVehicle(CheckinVehicleArgs args, CancellationToken cancellationToken = default);
 
-        Result<Receipt> CheckoutVehicle(string plateNumber);
+        Task<Receipt> CheckoutVehicle(string plateNumber, CancellationToken cancellationToken = default);
+    }
+
+    public class CheckinVehicleArgs
+    {
+        public string PlateNumber { get; set; }
+
+        public string OwnersPersonalNumber { get; set; }
+
+        public List<string> ParkingLotNumbers { get; set; } = new List<string>();
     }
 }

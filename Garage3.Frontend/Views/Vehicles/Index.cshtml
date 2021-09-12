@@ -1,0 +1,107 @@
+﻿@model Garage3.Frontend.Models.ViewModels.VehicleOverviewModelView
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+<script src="/js/checkoutHandler.js"></script>
+<script src="/js/VehicleEditHandler.js"></script>
+<script src="/js/VehicleDetailsHandler.js"></script>
+<script src="/js/VehicleRegisterHandler.js"></script>
+<script>
+    window.onload = function (e) {
+        new VehicleDetailsHandler();
+        new VehicleEditHandler();
+        new CheckoutHandler();
+        new VehicleRegisterHandler();
+    }
+</script>
+
+
+
+<h1>Vehicles</h1>
+
+<div class="container m-0 p-0">
+    <div class="row">
+        <div class="col-12">
+
+            <form asp-action="Search">
+
+                <div class="input-group">
+
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
+                    </div>
+
+                    <input type="text" class="form-control" asp-for="PlateNumber" placeholder="PlateNumber" />
+                    <input type="text" class="form-control" asp-for="OwnersPersonalNumber" placeholder="PersonalNumber" />
+                    <input type="text" class="form-control" asp-for="Manufacturer" placeholder="Manufacturer" />
+                    <input type="text" class="form-control" asp-for="Model" placeholder="Model" />
+                    <select asp-for="VehicleTypeName" asp-items="@await service.GetVehicleTypes()" class="form-control">
+                        <option selected="selected" value="">VehicleType</option>
+                    </select>
+                    
+                    <input type="number" class="form-control" asp-for="Wheels" value="" placeholder="Wheels" />
+                    <select asp-for="Color" asp-items="@service.GetVehicleColor()" class="form-control">
+                        <option selected="selected" value="">Color</option>
+                    </select>
+
+
+
+                </div>
+            </form>
+
+        </div>
+        <div class="col-12">
+            <button type="button" id="registerVehicle" class="btn btn-primary float-lg-right mt-5" data-toggle="modal" data-target="#registerVehicleModal">Register Vehicle</button>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            @foreach (var item in Model.TableHead)
+            {
+                <th>
+                    @item
+                </th>
+            }
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.Vehicles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlateNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberShip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkedTime)
+                </td>
+                <td>
+
+                    <button type="button" class="detailsButton btn btn-primary float-left mr-3" data-id="@item.VehicleId" data-toggle="modal" data-target="#DetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary float-left" data-id="@item.VehicleId" data-toggle="modal" data-target="#EditModal">Edit</button>
+                    <button type="button" class="checkoutButton btn btn-primary ml-5 float-right" data-id="@item.VehicleId" data-toggle="modal" data-target="#CheckoutModal">Checkout</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

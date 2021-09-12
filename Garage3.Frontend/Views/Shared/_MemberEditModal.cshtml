@@ -1,0 +1,65 @@
+﻿@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
+<div class="modal fade" id="MemberEditModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="editDivId">
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">FirstName</span>
+                        </div>
+                        <input id="memberEditFirstName" type="text" class="form-control" placeholder="firstName">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Surname</span>
+                        </div>
+                        <input id="memberEditSurname" type="text" class="form-control" placeholder="Surname">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">PhoneNumber</span>
+                        </div>
+                        <input id="memberEditPhoneNumber" type="text" class="form-control" placeholder="PhoneNumber">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">PersonalNumber</span>
+                        </div>
+                        <input id="memberEditPersonalNumber" type="text" class="form-control" placeholder="PersonalNumber">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Membership</span>
+                        </div>
+                        <select id="memberEditMembership" asp-items="@await service.GetMembershipTypes()" class="form-control"></select>                        
+                    </div>
+
+
+                    <div id="memberEditFailMessage"></div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="MemberEditSaveButton" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

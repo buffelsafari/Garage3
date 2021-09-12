@@ -1,0 +1,100 @@
+﻿@model Garage3.Frontend.Models.ViewModels.MembersOverviewModelView
+
+@inject Garage3.Frontend.Services.ViewServices.IViewService service
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+
+<script src="/js/MemberRegisterHandler.js"></script>
+<script src="/js/MemberDetailsHandler.js"></script>
+<script src="/js/MemberEditHandler.js"></script>
+<script src="/js/addVehicleHandler.js"></script>
+<script>
+    window.onload = function (e) {
+        new MemberEditHandler();
+        new MemberDetailsHandler();
+        new MemberRegisterHandler();
+        new AddVehicleHandler();
+    }
+</script>
+
+
+
+<h1>Members</h1>
+
+<div class="container m-0 p-0">
+    <div class="row">
+        <div class="col-12">
+
+            <form asp-action="Search">
+
+                <div class="input-group">
+
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
+                    </div>
+
+                    <input type="text" class="form-control" asp-for="PersonalNumber" placeholder="PersonalNumber" />
+                    <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="PhoneNumber" />
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="FirstName" />
+                    <input type="text" class="form-control" asp-for="Surname" placeholder="Surname" />
+                    
+                    <select asp-for="MembershipType" asp-items="@await service.GetMembershipTypes()" class="form-control">
+                        <option selected="selected" value="">MembershipType</option>
+                    </select>
+
+
+                </div>
+            </form>
+
+        </div>
+        <div class="col-12">
+            <button type="button" id="registerMember" class="btn btn-primary float-lg-right mt-5" data-toggle="modal" data-target="#registerMemberModal">Register Member</button>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            @foreach (var item in Model.TableHead)
+            {
+                <th>
+                    @item
+                </th>
+            }
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.Members)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembershipType)
+                </td>
+                <td>
+
+                    <button type="button" class="detailsButton btn btn-primary float-left mr-3" data-id="@item.Id" data-toggle="modal" data-target="#MemberDetailsModal">Details</button>
+                    <button type="button" class="editButton btn btn-primary float-left" data-id="@item.Id" data-toggle="modal" data-target="#MemberEditModal">Edit</button>
+                    <button type="button" class="addVehicleButton btn btn-primary float-right" data-id="@item.Id" data-toggle="modal" data-target="#AddVehicleModal">Add Vehicle</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

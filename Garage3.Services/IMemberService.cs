@@ -1,11 +1,57 @@
-﻿using Garage3.Data.Entities;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Garage3.Data.Entities;
 
 namespace Garage3.Services
 {
     public interface IMemberService
     {
-        Member RegisterMember(string plateNumber, string personalNumber, string firstName, string lastName, string phoneNumber);
+        Task<Member> RegisterMember(RegisterMemberArgs args, CancellationToken cancellationToken = default);
 
-        Member GetMember(string personalNumber);
+        Task<IEnumerable<Member>> FindMembers(FindMemberArgs args, CancellationToken cancellationToken = default);
+        Task<Member> EditMember(EditMemberArgs args, CancellationToken cancellationToken = default);
+    }
+
+    public class RegisterMemberArgs
+    {
+        public string FirstName { get; set; }
+
+        public string Surname { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string PersonalNumber { get; set; }
+
+        public string MembershipTypeName { get; set; }
+    }
+
+    public class EditMemberArgs
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+
+        public string Surname { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string PersonalNumber { get; set; }
+
+        public string MembershipTypeName { get; set; }
+    }
+
+
+    public class FindMemberArgs
+    {
+        public string FirstName { get; set; }
+
+        public string Surname { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string PersonalNumber { get; set; }
+
+        public string MembershipTypeName { get; set; }
     }
 }
