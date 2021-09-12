@@ -49,7 +49,7 @@
                             <span class="input-group-text">Membership</span>
                         </div>
 
-                        <select id="registerMembership" asp-items="@service.GetMembershipTypes()" class="form-control"></select>
+                        <select id="registerMembership" asp-items="@await service.GetMembershipTypes()" class="form-control"></select>
 
 
                     </div>

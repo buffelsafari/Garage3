@@ -46,8 +46,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Membership</span>
                         </div>
-                        <select id="editType" asp-items="@service.GetMembershipTypes()" class="form-control"></select>
-                        @*<input id="memberEditMembership" type="text" class="form-control" placeholder="MembershipType(todo dropdown)">*@
+                        <select id="memberEditMembership" asp-items="@await service.GetMembershipTypes()" class="form-control"></select>                        
                     </div>
 
 

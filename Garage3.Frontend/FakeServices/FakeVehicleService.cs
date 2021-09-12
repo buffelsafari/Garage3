@@ -11,6 +11,11 @@ namespace Garage3.Frontend.FakeServices
 {
     public class FakeVehicleService : IVehicleService
     {
+        public Task<Vehicle> EditVehicle(EditVehicleArgs args, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Vehicle>> FindVehicles(FindVehicleArgs args, CancellationToken cancellationToken = default)
         {
 

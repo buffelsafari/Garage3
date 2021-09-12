@@ -10,6 +10,11 @@ namespace Garage3.Frontend.FakeServices
 {
     public class FakeMemberService : IMemberService
     {
+        public Task<Member> EditMember(EditMemberArgs args, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Member>> FindMembers(FindMemberArgs args, CancellationToken cancellationToken = default)
         {
             

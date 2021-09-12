@@ -93,13 +93,9 @@ namespace Garage3.Frontend.Controllers.Vehicles
         /// <param name="id">the Vehicle id</param>
         /// <returns>json with vehicle data</returns>
         public async Task<string> OnVehicleDetailsButton(int id)  // todo move to vehicle controller
-        {
+        {           
 
-            
-
-            Vehicle vehicle = await GetVehicleFromId(id);
-
-            
+            Vehicle vehicle = await GetVehicleFromId(id);            
 
             // todo exeptions
             VehicleDetailModelView model = new VehicleDetailModelView
@@ -109,9 +105,7 @@ namespace Garage3.Frontend.Controllers.Vehicles
                 Manufacturer=vehicle.Manufacturer,
                 Color=vehicle.Color.ToString(),
                 Wheels=vehicle.Wheels,
-                Type=vehicle.VehicleType.Name,
-
-                       
+                Type=vehicle.VehicleType.Name,                       
        
             };
 
@@ -129,11 +123,7 @@ namespace Garage3.Frontend.Controllers.Vehicles
                     model.MembershipType = vehicle.Owner.MembershipType.Name;
                 }
 
-            }
-
-            
-
-
+            } 
 
             return JsonConvert.SerializeObject(model);
         }
@@ -141,9 +131,9 @@ namespace Garage3.Frontend.Controllers.Vehicles
         public async Task<string> OnVehicleEditButton(int id)  // todo maybe refactor with above
         {
 
-            Vehicle vehicle = await GetVehicleFromId(id);
+            Vehicle vehicle = await GetVehicleFromId(id);  //todo put in service 
 
-
+            
 
             VehicleEditModelView model = new VehicleEditModelView 
             {
@@ -181,35 +171,19 @@ namespace Garage3.Frontend.Controllers.Vehicles
         [ValidateAntiForgeryToken]
         public async Task<string> OnEditSave(EditSaveData data)
         {
+            var ve=await vehicleService.EditVehicle(new EditVehicleArgs 
+            { 
+                Id=data.Id,
+                Manufacturer=data.Manufacturer,
+                Model=data.Model,
+                Color=data.Color,
+                PlateNumber=data.PlateNumber,
+                Wheels=data.Wheels,
+                VehicleTypeName=data.Type
+            
+            });
 
-
-            Vehicle vehicle = await GetVehicleFromId(data.Id);
-
-            // todo validate and return message
-
-            vehicle.PlateNumber = data.PlateNumber;
-            vehicle.Manufacturer = data.Manufacturer;
-            vehicle.Model = data.Model;
-            vehicle.Wheels = data.Wheels;
-
-            VehicleColor color;
-            if (Enum.TryParse<VehicleColor>(data.Color, out color))
-            {
-                vehicle.Color = color;
-            }
-
-            // change type? 
-
-
-            // edit the vehicle
-            Debug.WriteLine("Vehicle Id:" + data.Id);
-            Debug.WriteLine("PlateNumber:" + data.PlateNumber);
-            Debug.WriteLine("Manufacturer:" + data.Manufacturer);
-            Debug.WriteLine("Color:" + data.Color);
-            Debug.WriteLine("Wheels:" + data.Wheels);
-            Debug.WriteLine("Type:" + data.Type);
-
-
+            
             var result = new
             {
                 Success = true,

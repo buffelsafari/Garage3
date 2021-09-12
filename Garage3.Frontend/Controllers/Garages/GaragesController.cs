@@ -15,10 +15,12 @@ namespace Garage3.Frontend.Controllers.Garages
     {
         private IGarageService garageService;
         private IVehicleTypeService vehicleTypeService;
-        public GaragesController(IGarageService garageService, IVehicleTypeService vehicleTypeService)
+        private IVehicleService vehicleService;
+        public GaragesController(IGarageService garageService, IVehicleTypeService vehicleTypeService, IVehicleService vehicleService)
         {
             this.garageService = garageService;
             this.vehicleTypeService = vehicleTypeService;
+            this.vehicleService = vehicleService;
         }
         
 
@@ -45,7 +47,18 @@ namespace Garage3.Frontend.Controllers.Garages
             {
                 return NotFound();
             }
-            
+
+            IEnumerable<Vehicle> vehicles = await vehicleService.FindVehicles(
+                new FindVehicleArgs
+                {
+                    
+                });
+
+
+
+
+
+
             var garages = await garageService.FindGarages(new FindGarageArgs {GarageId=id});
             Garage garage = garages.First();
 
@@ -54,102 +67,60 @@ namespace Garage3.Frontend.Controllers.Garages
                 GarageId=(int)id, 
                 GarageName=garage.Name,
                 TableHead = new string[]{"PlateNumber", "Owner", "Membership", "VehicleType", "ParkedTime" },  //todo make constant
-                Vehicles=new VehicleItemModelView[] 
-                {
-                    new VehicleItemModelView
-                    { 
-                        VehicleId=1,
-                        PlateNumber="ABC080",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=2,
-                        PlateNumber="VIC0020",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=3,
-                        PlateNumber="CMD064",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=4,
-                        PlateNumber="FYI076",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="MotorCycle"
-                    }
-                }
+                
             };
             
 
-            return View(model);
+            return View(CreateModel(vehicles, model));
         }
 
 
         public async Task<IActionResult> Search(GarageOverviewModelView viewModel)
         {
+            IEnumerable<Vehicle> vehicles = await vehicleService.FindVehicles(
+                new FindVehicleArgs
+                {
+                    Manufacturer = viewModel.Manufacturer,
+                    Model = viewModel.Model,
+                    OwnersPersonalNumber = viewModel.OwnersPersonalNumber,
+                    PlateNumber = viewModel.PlateNumber,
+                    VehicleTypeName = viewModel.VehicleTypeName,
+                    Wheels = viewModel.Wheels,
+                    Color = viewModel.Color
+                });
 
-            // todo search and sort
-            Debug.WriteLine("hello from filtered search");
+
+            return View(nameof(GarageOverview), CreateModel(vehicles, viewModel));
+        }
+
+        private GarageOverviewModelView CreateModel(IEnumerable<Vehicle> vehicles, GarageOverviewModelView viewModel)
+        {
+            List<VehicleItemModelView> vehiclesModel = new List<VehicleItemModelView>();
+            foreach (Vehicle v in vehicles)
+            {
+                vehiclesModel.Add(new VehicleItemModelView
+                {
+                    VehicleId = v.Id,
+                    PlateNumber = v.PlateNumber,
+                    Owner = v.Owner != null ? v.Owner.FirstName : "hello",
+                    ParkedTime = "ph timeSpan",
+                    VehicleType = v.VehicleType != null ? v.VehicleType.Name : "-"
+
+                });
+            }
+
 
             GarageOverviewModelView model = new GarageOverviewModelView
             {
                 GarageId = viewModel.GarageId,
-                GarageName=viewModel.GarageName,
-                TableHead = new string[] { "PlateNumber", "Owner","Membership", "VehicleType", "ParkedTime" },
-                Vehicles = new VehicleItemModelView[]
-                {
-                    new VehicleItemModelView
-                    {
-                        VehicleId=1,
-                        PlateNumber="ABC080",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=2,
-                        PlateNumber="VIC0020",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=3,
-                        PlateNumber="CMD064",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="Car"
-                    },
-                    new VehicleItemModelView
-                    {
-                        VehicleId=4,
-                        PlateNumber="FYI076",
-                        Owner="kalle Anka",
-                        ParkedTime="12days,4hours,6min",                        
-                        VehicleType="MotorCycle"
-                    }
-                }
+                GarageName = viewModel.GarageName,
+                TableHead = new string[] { "PlateNumber", "Owner", "Membership", "VehicleType", "ParkedTime" },
+                Vehicles = vehiclesModel,
             };
 
 
-
-            return View(nameof(GarageOverview), model);
+            return model;
         }
-
-
           
 
     
@@ -185,13 +156,7 @@ namespace Garage3.Frontend.Controllers.Garages
 
             });
             
-            // todo create a new vehicleType
-            Debug.WriteLine("Garage Id:"+data.Id);
-            Debug.WriteLine("Garage Item1:" + data.Name);
-            Debug.WriteLine("Garage Item2:" + data.RequiredParkingLots);
-            Debug.WriteLine("Garage Item2:" + data.BasicFee);
-
-
+            
             var result = new
             {
                 Success=true,

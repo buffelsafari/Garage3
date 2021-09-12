@@ -30,15 +30,17 @@ namespace Garage3.Frontend.Controllers.Members
 
         public async Task<IActionResult> Search(MembersOverviewModelView viewModel)
         {
-            
-            
+                       
+
+
             IEnumerable<Member> vehicles = await memberService.FindMembers(
                 new FindMemberArgs
                 {
                     PersonalNumber = viewModel.PersonalNumber,
                     FirstName=viewModel.FirstName,
                     Surname=viewModel.Surname,
-                    PhoneNumber=viewModel.PhoneNumber
+                    PhoneNumber=viewModel.PhoneNumber,
+                    MembershipTypeName=viewModel.MembershipType
                 });
 
             return View(nameof(Index), CreateModel(vehicles));
@@ -58,26 +60,19 @@ namespace Garage3.Frontend.Controllers.Members
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string OnRegisterSave(RegisterSaveData data)
+        public async Task<string> OnRegisterSave(RegisterSaveData data)
         {
-            // !!color and type is missing in args def
-
-            memberService.RegisterMember(new RegisterMemberArgs
+            //todo exeptions and validation
+            var member=await memberService.RegisterMember(new RegisterMemberArgs
             {
                 FirstName = data.FirstName,
                 Surname = data.Surname,
                 PhoneNumber = data.PhoneNumber,
-                PersonalNumber = data.PersonalNumber
+                PersonalNumber = data.PersonalNumber,
+                MembershipTypeName=data.Membership,
             });
 
-
-            Debug.WriteLine("FirstName:" + data.FirstName);
-            Debug.WriteLine("Surname:" + data.Surname);
-            Debug.WriteLine("PhoneNumber:" + data.PhoneNumber);
-            Debug.WriteLine("PersonalNumber:" + data.PersonalNumber);
             
-
-
             var result = new
             {
                 Success = true,
@@ -113,9 +108,6 @@ namespace Garage3.Frontend.Controllers.Members
         public async Task<string> OnMemberDetailsButton(int id)  // todo move to vehicle controller
         {
 
-       
-
-
             Member member = await GetMemberFromId(id);
 
             // todo exeptions
@@ -130,9 +122,6 @@ namespace Garage3.Frontend.Controllers.Members
             };
 
 
-            
-
-
             return JsonConvert.SerializeObject(model);
         }
 
@@ -140,7 +129,7 @@ namespace Garage3.Frontend.Controllers.Members
 
         public async Task<string> OnVehicleEditButton(int id)  // todo maybe refactor with above
         {
-
+            
             Member member = await GetMemberFromId(id);
 
             // todo exeptions
@@ -162,22 +151,17 @@ namespace Garage3.Frontend.Controllers.Members
         [ValidateAntiForgeryToken]
         public async Task<string> OnEditSave(EditSaveData data)
         {
+            await memberService.EditMember(new EditMemberArgs
+            {
+                Id=data.Id,
+                PersonalNumber=data.PersonalNumber,
+                PhoneNumber=data.PhoneNumber,
+                FirstName=data.FirstName,
+                Surname=data.Surname,
+                MembershipTypeName=data.MembershipType                
+            });
 
-
-            Member member = await GetMemberFromId(data.Id);
-
-            // todo validate and return message
-
-            member.FirstName = data.FirstName;
-            member.Surname = data.Surname;
-            member.PhoneNumber = data.PhoneNumber;
-            member.PersonalNumber = member.PersonalNumber;
-            
-            //member.MembershipType todo change membership type
                         
-
-            // change type? 
-
 
             // edit the vehicle
             Debug.WriteLine("member Id:" + data.Id);
@@ -209,6 +193,63 @@ namespace Garage3.Frontend.Controllers.Members
 
         }
 
+
+
+
+        public async Task<string> OnVehicleAddButton(int id)  // todo maybe refactor with above
+        {
+            Member member = await GetMemberFromId(id);
+            // todo exeptions
+            AddVehicleMemberView model = new AddVehicleMemberView
+            {
+                Name = $"{member.FirstName} {member.Surname}"                
+            };
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<string> OnAddVehicleSave(AddVehicleSaveData data)
+        {
+            //await memberService.EditMember(new EditMemberArgs
+            //{
+            //    Id = data.Id,
+            //    PersonalNumber = data.PersonalNumber,
+            //    PhoneNumber = data.PhoneNumber,
+            //    FirstName = data.FirstName,
+            //    Surname = data.Surname,
+            //    MembershipTypeName = data.MembershipType
+            //});
+            // todo add vehicle to member service
+
+
+            // edit the vehicle
+            Debug.WriteLine("member Id:" + data.Id);
+            Debug.WriteLine("Platenumber:" + data.PlateNumber);
+            
+
+
+            var result = new
+            {
+                Success = true,
+                Message = "Message from controller"
+            };
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+
+        public class AddVehicleMemberView
+        {
+            public string Name { get; set; }
+        }
+
+        public class AddVehicleSaveData
+        { 
+            public int Id { get; set; }
+            public string PlateNumber { get; set; }
+        }
 
     }
 

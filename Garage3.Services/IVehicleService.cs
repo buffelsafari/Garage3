@@ -10,6 +10,8 @@ namespace Garage3.Services
         Task<Vehicle> RegisterVehicle(RegisterVehicleArgs args, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<Vehicle>> FindVehicles(FindVehicleArgs args, CancellationToken cancellationToken = default);
+
+        Task<Vehicle> EditVehicle(EditVehicleArgs args, CancellationToken cancellationToken = default);
     }
 
     
@@ -42,6 +44,21 @@ namespace Garage3.Services
 
         public string VehicleTypeName { get; set; }
 
+        public string Color { get; set; }
+    }
+
+    public class EditVehicleArgs
+    {
+        public int Id { get; set; }
+        public string Model { get; set; }
+
+        public string Manufacturer { get; set; }
+
+        public string PlateNumber { get; set; }
+
+        public int Wheels { get; set; }
+
+        public string VehicleTypeName { get; set; }
         public string Color { get; set; }
     }
 }

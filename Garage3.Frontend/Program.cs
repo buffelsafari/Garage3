@@ -22,7 +22,7 @@ namespace Garage3.Frontend
 
                 try
                 {
-                    SeedData.InitAsync(services).Wait();
+                    //SeedData.InitAsync(services).Wait();
                     
 
                 }

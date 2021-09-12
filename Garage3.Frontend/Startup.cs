@@ -39,6 +39,7 @@ namespace Garage3.Frontend
 
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IMembershipTypeService, MembershipTypeService>();
             services.AddScoped<IGarageService, GarageService>();
             services.AddScoped<IVehicleTypeService, VehicleTypeService>();
             
