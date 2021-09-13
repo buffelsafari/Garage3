@@ -15,6 +15,8 @@ namespace Garage3.Services
         Task<IEnumerable<MembershipType>> FindMembershipTypes(FindMembershipTypeArgs args, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<MembershipType>> GetMembershipTypes(CancellationToken cancellationToken = default);
+
+        
     }
 
     public class NewMemberShipTypeArgs

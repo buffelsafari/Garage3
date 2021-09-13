@@ -10,6 +10,11 @@ namespace Garage3.Frontend.FakeServices
 {
     public class FakeMemberService : IMemberService
     {
+        public Task<Vehicle> AddVehicleToMember(AddVehicleArgs args, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Member> EditMember(EditMemberArgs args, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

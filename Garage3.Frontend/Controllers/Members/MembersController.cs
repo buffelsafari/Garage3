@@ -212,6 +212,7 @@ namespace Garage3.Frontend.Controllers.Members
         [ValidateAntiForgeryToken]
         public async Task<string> OnAddVehicleSave(AddVehicleSaveData data)
         {
+            await memberService.AddVehicleToMember(new AddVehicleArgs { MemberId=data.Id, PlateNumber=data.PlateNumber });
             //await memberService.EditMember(new EditMemberArgs
             //{
             //    Id = data.Id,

@@ -12,6 +12,7 @@ namespace Garage3.Services
 
         Task<IEnumerable<Member>> FindMembers(FindMemberArgs args, CancellationToken cancellationToken = default);
         Task<Member> EditMember(EditMemberArgs args, CancellationToken cancellationToken = default);
+        Task<Vehicle> AddVehicleToMember(AddVehicleArgs args, CancellationToken cancellationToken = default);
     }
 
     public class RegisterMemberArgs
@@ -53,5 +54,11 @@ namespace Garage3.Services
         public string PersonalNumber { get; set; }
 
         public string MembershipTypeName { get; set; }
+    }
+
+    public class AddVehicleArgs
+    { 
+        public int MemberId { get; set; }
+        public string PlateNumber { get; set; }
     }
 }
