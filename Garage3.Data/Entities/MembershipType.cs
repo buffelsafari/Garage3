@@ -7,7 +7,7 @@ namespace Garage3.Data.Entities
     {
         public virtual string Name { get; set; }
 
-        public virtual ICollection<Member> Members { get; set; } = new ObservableHashSet<Member>();
+        public virtual ICollection<Member> Members { get; } = new ObservableHashSet<Member>();
 
         public virtual Garage Garage { get; set; }
     }

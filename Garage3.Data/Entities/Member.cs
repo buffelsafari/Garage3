@@ -17,7 +17,7 @@ namespace Garage3.Data.Entities
 
         public virtual MembershipType MembershipType { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicles { get; set; } = new ObservableHashSet<Vehicle>();
+        public virtual ICollection<Vehicle> Vehicles { get; } = new ObservableHashSet<Vehicle>();
     }
 
 }

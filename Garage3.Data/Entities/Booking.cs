@@ -41,6 +41,6 @@ namespace Garage3.Data.Entities
         /// <summary>
         /// THe parkinglot or lots if the vehicle occupies multiple lots
         /// </summary>
-        public virtual ICollection<ParkingLot> ParkingLots { get; set; } = new ObservableHashSet<ParkingLot>();
+        public virtual ICollection<ParkingLot> ParkingLots { get; } = new ObservableHashSet<ParkingLot>();
     }
 }

@@ -11,10 +11,10 @@ namespace Garage3.Data.Entities
 
         public virtual decimal BasicFee { get; set; }
 
-        public virtual ICollection<MembershipType> MembershipTypes { get; set; } = new ObservableHashSet<MembershipType>();
+        public virtual ICollection<MembershipType> MembershipTypes { get; } = new ObservableHashSet<MembershipType>();
 
-        public virtual ICollection<VehicleType> VehicleTypes { get; set; } = new ObservableHashSet<VehicleType>();
+        public virtual ICollection<VehicleType> VehicleTypes { get;} = new ObservableHashSet<VehicleType>();
 
-        public virtual ICollection<ParkingLot> ParkingLots { get; set; } = new ObservableHashSet<ParkingLot>();
+        public virtual ICollection<ParkingLot> ParkingLots { get; } = new ObservableHashSet<ParkingLot>();
     }
 }

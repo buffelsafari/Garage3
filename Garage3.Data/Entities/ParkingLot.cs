@@ -13,6 +13,6 @@ namespace Garage3.Data.Entities
 
         public virtual Garage Garage { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; } = new ObservableHashSet<Booking>();
+        public virtual ICollection<Booking> Bookings { get; } = new ObservableHashSet<Booking>();
     }
 }

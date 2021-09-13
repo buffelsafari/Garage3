@@ -17,7 +17,7 @@ namespace Garage3.Data.Entities
 
         public virtual VehicleType VehicleType { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; } = new ObservableHashSet<Booking>();
+        public virtual ICollection<Booking> Bookings { get; } = new ObservableHashSet<Booking>();
 
         public virtual VehicleColor Color { get; set;}
     }
