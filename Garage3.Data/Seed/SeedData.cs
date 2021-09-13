@@ -27,6 +27,7 @@ namespace Garage3.Data.Seed
                     context.ParkingLots.Any())
                 {
                     // DROP TABLE
+                    return;
                 }
                 var memberships = await InitMembershipTypes();
 
