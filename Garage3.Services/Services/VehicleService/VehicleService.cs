@@ -52,6 +52,7 @@ namespace Garage3.Services.VehicleService
                 (!modelOption || v.Model.Contains(args.Model))&&
                 (!wheelsOption || v.Wheels==args.Wheels)&&
                 (!colorOption || v.Color==color)&&
+                (!vehicleTypeOption||v.VehicleType.Name==args.VehicleTypeName)&&
                 (!personalNumberOption || v.Owner.PersonalNumber.Contains(args.OwnersPersonalNumber)))
 
                 .ToListAsync(); 
