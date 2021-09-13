@@ -33,6 +33,7 @@ namespace Garage3.Data.Seed
                 var vehicleTypes = await InitVehicleTypes();
                 var members = await InitMembers(memberships);
 
+                //
                 
                 var bookings = await InitBookings();
                 var receipts = await InitReceipts(bookings);
