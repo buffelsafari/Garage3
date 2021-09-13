@@ -77,7 +77,7 @@ namespace Garage3.Services.VehicleService
             vehicle.VehicleType = vType;
             vehicle.Wheels = args.Wheels;
 
-            //vType.Vehicles.Add(vehicle);
+            vType.Vehicles.Add(vehicle);
 
             context.Vehicles.Add(vehicle);
 
