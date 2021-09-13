@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Garage3.Data;
 using Garage3.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Garage3.Services
@@ -22,81 +19,6 @@ namespace Garage3.Services
 
 
         Task<IEnumerable<Garage>> FindGarages(FindGarageArgs args, CancellationToken cancellationToken = default);
-    }
-
-    public class GarageService : IGarageService
-    {
-        private readonly GarageContext _ctx;
-
-        public GarageService(GarageContext ctx)
-        {
-            _ctx = ctx;
-        }
-
-        public async Task<IEnumerable<ParkingLot>> GetAvailableParkingLots(GetAvailableParkingLotsArgs args, CancellationToken cancellationToken = default)
-        {
-            DateTime pointInTime = DateTime.Now;
-
-            if (args.PointInTime.HasValue && args.PointInTime.Value != default)
-                pointInTime = args.PointInTime.Value;
-
-            IQueryable<ParkingLot> query =
-                from lot in _ctx.ParkingLots.Include(g => g.Garage)
-                from booking in lot.Bookings
-                where lot.Garage.Id == args.GarageId
-                where !String.IsNullOrWhiteSpace(args.PlateNumber) && booking.Vehicle.PlateNumber == args.PlateNumber
-                where args.VehicleId.HasValue && args.VehicleId > 0 && booking.Vehicle.Id == args.VehicleId
-                where booking.CheckinTime >= pointInTime && (booking.CheckoutTime == null || booking.CheckoutTime <= args.PointInTime)
-                select lot;
-
-
-            // TODO finish up. Should really consider DTOs
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<ParkingLot>> GetLotsForParkedVehicle(GetLotsForParkedVehicleArgs args, CancellationToken cancellationToken = default)
-        {
-            DateTime pointInTime = DateTime.Now;
-
-            if (args.PointInTime.HasValue && args.PointInTime.Value != default)
-                pointInTime = args.PointInTime.Value;
-
-            IQueryable<ParkingLot> query = 
-                from lot in _ctx.ParkingLots.Include(g => g.Garage)
-                from booking in lot.Bookings
-                where !String.IsNullOrWhiteSpace(args.PlateNumber) && booking.Vehicle.PlateNumber == args.PlateNumber
-                where args.VehicleId.HasValue && args.VehicleId > 0 && booking.Vehicle.Id == args.VehicleId
-                where booking.CheckinTime >= pointInTime && (booking.CheckoutTime == null || booking.CheckoutTime <= args.PointInTime)
-                select lot;
-
-            List<ParkingLot> result = await query.ToListAsync(cancellationToken);
-
-            return result;
-        }
-
-        public async Task<IEnumerable<ParkingLot>> GetParkingLots(GetParkingLotsArgs args, CancellationToken cancellationToken = default)
-        {
-            IQueryable<ParkingLot> query = _ctx.ParkingLots.Where(x => x.Garage.Id == args.GarageId);
-
-            List<ParkingLot> result = await query.ToListAsync(cancellationToken);
-
-            return result;
-        }
-
-        public async Task<IEnumerable<Garage>> FindGarages(FindGarageArgs args, CancellationToken cancellationToken = default)
-        {
-            IQueryable<Garage> query = _ctx.Garages;
-
-            if (!String.IsNullOrWhiteSpace(args.GarageName))
-                query = query.Where(x => x.Name.Contains(args.GarageName));
-
-            if(args.GarageId is > 0)
-                query = query.Where(x => x.Id == args.GarageId.Value);
-
-            List<Garage> result = await query.ToListAsync(cancellationToken);
-
-            return result;
-        }
     }
 
     public class FindGarageArgs
