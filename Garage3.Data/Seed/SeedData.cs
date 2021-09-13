@@ -28,22 +28,24 @@ namespace Garage3.Data.Seed
                 {
                     // DROP TABLE
                 }
-                var memberships = InitMembershipTypes();
+                var memberships = await InitMembershipTypes();
 
-                var vehicleTypes = InitVehicleTypes().Result.ToList();
-                var members = InitMembers(memberships).ToList();
+                var vehicleTypes = await InitVehicleTypes();
+                var members = await InitMembers(memberships);
 
-                var receipts = InitReceipts().Result.ToList();
-                var bookings = InitBookings(receipts).Result.ToList();
-                var parkingLots = InitParkingLots(bookings).Result.ToList();
-                var garages = InitGarages(parkingLots, memberships);
-                var vehicles = InitVehicles(members, bookings, vehicleTypes);
+                
+                var bookings = await InitBookings();
+                var receipts = await InitReceipts(bookings);
+
+                var parkingLots = await InitParkingLots(bookings);
+                var garages = await InitGarages(parkingLots, memberships);
+                var vehicles = await InitVehicles(members, bookings, vehicleTypes);
 
                 await _context.SaveChangesAsync();
             }
         }
         
-        private static async Task<IEnumerable<Receipt>> InitReceipts()
+        private static async Task<IEnumerable<Receipt>> InitReceipts(IEnumerable<Booking> bookings)
         {
             var receipts = new List<Receipt>();
 
@@ -51,17 +53,17 @@ namespace Garage3.Data.Seed
             {
                 var receipt = _context.Receipts.CreateProxy();
                 receipt.Sum = 100;
-
+                receipt.Booking = bookings.ElementAt(i);
                 receipts.Add(receipt);
                 await _context.Receipts.AddAsync(receipt);
             }
 
             await _context.SaveChangesAsync();
 
-            return receipts;
+            return await Task.FromResult(receipts);
         }
 
-        private static async Task<IEnumerable<Booking>> InitBookings(ICollection<Receipt> receipts)
+        private static async Task<IEnumerable<Booking>> InitBookings()
         {
             var bookings = new List<Booking>();
 
@@ -72,7 +74,7 @@ namespace Garage3.Data.Seed
                 booking.CheckedIn = true;
                 booking.CheckedOut = false;
                 booking.CheckoutTime = null;
-                booking.Receipt = receipts.ElementAt(i);
+                
 
                 bookings.Add(booking);
                 await _context.Bookings.AddAsync(booking);
@@ -80,10 +82,10 @@ namespace Garage3.Data.Seed
 
             await _context.SaveChangesAsync();
 
-            return bookings;
+            return await Task.FromResult(bookings);
         }
 
-        private static IEnumerable<Member> InitMembers(ICollection<MembershipType> types)
+        private static async Task<IEnumerable<Member>> InitMembers(ICollection<MembershipType> types)
         {
             var members = new List<Member>();
 
@@ -103,10 +105,11 @@ namespace Garage3.Data.Seed
 
                 member.PhoneNumber = _faker.Person.Phone;
                 members.Add(member);
-                _context.Members.Add(member);
+
+                await _context.Members.AddAsync(member);
             }
 
-            return members;
+            return await Task.FromResult(members);
         }
 
         private static string GeneratePersonnummer()
@@ -121,29 +124,37 @@ namespace Garage3.Data.Seed
         }
 
 
-        private static async Task<IEnumerable<Garage>> InitGarages(ICollection<ParkingLot> parkingLots,
+        private static async Task<IEnumerable<Garage>> InitGarages(IEnumerable<ParkingLot> parkingLots,
             ICollection<MembershipType> membershipTypes)
         {
             var garages = new List<Garage>();
-            for (var i = 0; i < 4; i++)
-            {
-                var garage = _context.Garages.CreateProxy();
-                garage.Name = _faker.Company.CompanyName();
-                garage.Description = _faker.Company.CatchPhrase();
-                garage.BasicFee = 10 * (i + 1);
-                garage.ParkingLots = parkingLots;
-                garage.MembershipTypes = membershipTypes;
+            
+            var garage = _context.Garages.CreateProxy();
+            garage.Name = _faker.Company.CompanyName();
+            garage.Description = _faker.Company.CatchPhrase();
+            garage.BasicFee = 10;
 
-                garages.Add(garage);
-                await _context.Garages.AddAsync(garage);
+            foreach (var parkingLot in parkingLots)
+            {
+                garage.ParkingLots.Add(parkingLot);
             }
+
+            foreach (var mType in membershipTypes)
+            {
+                garage.MembershipTypes.Add(mType);
+            }
+            
+
+            garages.Add(garage);
+            await _context.Garages.AddAsync(garage);
+            
 
             await _context.SaveChangesAsync();
 
-            return garages;
+            return await Task.FromResult(garages);
         }
 
-        private static async Task<IEnumerable<Vehicle>> InitVehicles(ICollection<Member> owners,
+        private static async Task<IEnumerable<Vehicle>> InitVehicles(IEnumerable<Member> owners,
             IEnumerable<Booking> bookings,
             IEnumerable<VehicleType> type)
         {
@@ -156,9 +167,14 @@ namespace Garage3.Data.Seed
                 vehicle.PlateNumber = _faker.Vehicle.Vin();
                 vehicle.Wheels = _faker.Random.Int(2, 8);
                 vehicle.Color = VehicleColor.Blue;
-                vehicle.Bookings = bookings.ToList();
+
+                foreach (var booking in bookings)
+                {
+                    vehicle.Bookings.Add(booking);
+                }
+                
                 vehicle.Owner = owners.ElementAt(i);
-                vehicle.VehicleType = type.ElementAt(i);
+                vehicle.VehicleType = type.ElementAt(_faker.Random.Int(0,1));
 
                 vehicles.Add(vehicle);
 
@@ -167,7 +183,7 @@ namespace Garage3.Data.Seed
 
             await _context.SaveChangesAsync();
 
-            return vehicles;
+            return await Task.FromResult(vehicles);
         }
 
         private static async Task<ICollection<VehicleType>> InitVehicleTypes()
@@ -190,10 +206,10 @@ namespace Garage3.Data.Seed
             types.Add(car);
             types.Add(truck);
 
-            return types;
+            return await Task.FromResult(types);
         }
 
-        private static ICollection<MembershipType> InitMembershipTypes()
+        private static async Task<ICollection<MembershipType>> InitMembershipTypes()
         {
             var basic = _context.MembershipTypes.CreateProxy();
             basic.Name = "Basic";
@@ -203,20 +219,24 @@ namespace Garage3.Data.Seed
 
             _context.Add(basic);
             _context.Add(pro);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             var list = new List<MembershipType> {basic, pro};
 
-            return list;
+            return await Task.FromResult(list);
         }
 
-        private static async Task<IEnumerable<ParkingLot>> InitParkingLots(ICollection<Booking> bookings)
+        private static async Task<IEnumerable<ParkingLot>> InitParkingLots(IEnumerable<Booking> bookings)
         {
             var parkingLots = new List<ParkingLot>();
             for (var i = 0; i < 20; i++)
             {
                 var lot = _context.ParkingLots.CreateProxy();
-                lot.Bookings = bookings;
+                foreach (var booking in bookings)
+                {
+                    lot.Bookings.Add(booking);
+                }
+                
                 lot.Number = i;
                 lot.Section = _faker.Company.CompanyName()[..2].ToUpper();
                 parkingLots.Add(lot);
@@ -225,7 +245,7 @@ namespace Garage3.Data.Seed
 
             await _context.SaveChangesAsync();
 
-            return parkingLots;
+            return await Task.FromResult(parkingLots);
         }
     }
 }

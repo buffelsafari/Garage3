@@ -36,6 +36,10 @@ namespace Garage3.Data.Maps
             builder
                 .HasMany(p => p.MembershipTypes)
                 .WithOne(p => p.Garage);
+
+            builder
+                .HasMany(p => p.ParkingLots)
+                .WithOne(p => p.Garage);
         }
     }
 
