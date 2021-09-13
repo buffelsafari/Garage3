@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
 using Bogus.Extensions.Sweden;
@@ -12,162 +13,239 @@ namespace Garage3.Data.Seed
     public class SeedData
     {
         private static Faker _faker;
+        private static GarageContext _context;
 
         public static async Task InitAsync(IServiceProvider services)
         {
-            await using var db = services.GetRequiredService<GarageContext>();
-            if (await db.Garages.AnyAsync()) return;
+            using (var context = services.GetRequiredService<GarageContext>())
+            {
+                _context = context;
+                _faker = new Faker(locale: "sv");
 
-            _faker = new Faker("sv");
+                if (context.Bookings.Any() || context.VehicleTypes.Any() || context.Garages.Any()
+                    || context.Members.Any() || context.Receipts.Any() || context.Vehicles.Any() ||
+                    context.ParkingLots.Any())
+                {
+                    // DROP TABLE
+                }
+                var memberships = await InitMembershipTypes();
 
-            var vehicles = InitVehicles();
-            await db.AddRangeAsync(vehicles);
+                var vehicleTypes = await InitVehicleTypes();
+                var members = await InitMembers(memberships);
 
-            var bookings = InitBookings();
-            await db.AddRangeAsync(bookings);
                 
-            var members = InitMembers();
-            await db.AddRangeAsync(members);
-                
-            var vehicleTypes = InitVehicleTypes();
-            await db.AddRangeAsync(vehicleTypes);
-                
-            var membershipTypes = InitMembershipTypes();
-            await db.AddRangeAsync(membershipTypes);
-                
-            var parkingLots = InitParkingLots();
-            await db.AddRangeAsync(parkingLots);
-                
-            var garages = InitGarages();
-            await db.AddRangeAsync(garages);
+                var bookings = await InitBookings();
+                var receipts = await InitReceipts(bookings);
 
-            await db.SaveChangesAsync();
+                var parkingLots = await InitParkingLots(bookings);
+                var garages = await InitGarages(parkingLots, memberships);
+                var vehicles = await InitVehicles(members, bookings, vehicleTypes);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+        
+        private static async Task<IEnumerable<Receipt>> InitReceipts(IEnumerable<Booking> bookings)
+        {
+            var receipts = new List<Receipt>();
+
+            for (var i = 0; i < 20; i++)
+            {
+                var receipt = _context.Receipts.CreateProxy();
+                receipt.Sum = 100;
+                receipt.Booking = bookings.ElementAt(i);
+                receipts.Add(receipt);
+                await _context.Receipts.AddAsync(receipt);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(receipts);
         }
 
-        private static IEnumerable<Booking> InitBookings()
+        private static async Task<IEnumerable<Booking>> InitBookings()
         {
             var bookings = new List<Booking>();
 
             for (var i = 0; i < 20; i++)
             {
-                var booking = new Booking()
-                {
-                    CheckinTime = DateTime.Now,
-                    CheckedIn = true,
-                    CheckedOut = false,
-                };
+                var booking = _context.Bookings.CreateProxy();
+                booking.CheckinTime = DateTime.Now;
+                booking.CheckedIn = true;
+                booking.CheckedOut = false;
+                booking.CheckoutTime = null;
+                
+
                 bookings.Add(booking);
+                await _context.Bookings.AddAsync(booking);
             }
 
-            return bookings;
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(bookings);
         }
 
-        private static IEnumerable<Member> InitMembers()
+        private static async Task<IEnumerable<Member>> InitMembers(ICollection<MembershipType> types)
         {
             var members = new List<Member>();
 
             for (var i = 0; i < 20; i++)
             {
-                var member = new Member()
+                var member = _context.Members.CreateProxy();
+                member.FirstName = _faker.Name.FirstName();
+                member.Surname = _faker.Name.LastName();
+                member.MembershipType = types.ElementAt(_faker.Random.Int(0, 1)); // Basic or Pro
+                var personNummer = GeneratePersonnummer();
+                while (_context.Members.Any(m => m.PersonalNumber == personNummer))
                 {
-                    FirstName = _faker.Person.FirstName,
-                    Surname = _faker.Person.LastName,
-                    PhoneNumber = _faker.Person.Phone,
-                    PersonalNumber = _faker.Person.Personnummer()
-                };
+                    personNummer = GeneratePersonnummer();
+                }
+
+                member.PersonalNumber = personNummer;
+
+                member.PhoneNumber = _faker.Person.Phone;
                 members.Add(member);
+
+                await _context.Members.AddAsync(member);
             }
 
-            return members;
+            return await Task.FromResult(members);
         }
 
-        private static IEnumerable<Garage> InitGarages()
+        private static string GeneratePersonnummer()
+        {
+            var year = _faker.Random.Int(1940, 2010);
+            var month = _faker.Random.Int(1, 12);
+            var day = _faker.Random.Int(1, 30);
+
+            var number = _faker.Random.Int(0, 9999);
+
+            return year + month.ToString() + day + number;
+        }
+
+
+        private static async Task<IEnumerable<Garage>> InitGarages(IEnumerable<ParkingLot> parkingLots,
+            ICollection<MembershipType> membershipTypes)
         {
             var garages = new List<Garage>();
+            
+            var garage = _context.Garages.CreateProxy();
+            garage.Name = _faker.Company.CompanyName();
+            garage.Description = _faker.Company.CatchPhrase();
+            garage.BasicFee = 10;
 
-            for (var i = 0; i < 4; i++)
+            foreach (var parkingLot in parkingLots)
             {
-                var garage = new Garage()
-                {
-                    Name = _faker.Company.CompanyName(),
-                    Description = _faker.Company.CatchPhrase()
-                };
-                garages.Add(garage);
+                garage.ParkingLots.Add(parkingLot);
             }
 
-            return garages;
+            foreach (var mType in membershipTypes)
+            {
+                garage.MembershipTypes.Add(mType);
+            }
+            
+
+            garages.Add(garage);
+            await _context.Garages.AddAsync(garage);
+            
+
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(garages);
         }
 
-        private static IEnumerable<Vehicle> InitVehicles()
+        private static async Task<IEnumerable<Vehicle>> InitVehicles(IEnumerable<Member> owners,
+            IEnumerable<Booking> bookings,
+            IEnumerable<VehicleType> type)
         {
             var vehicles = new List<Vehicle>();
-
             for (var i = 0; i < 20; i++)
             {
-                var vehicle = new Vehicle()
+                var vehicle = _context.Vehicles.CreateProxy();
+                vehicle.Model = _faker.Vehicle.Model();
+                vehicle.Manufacturer = _faker.Vehicle.Manufacturer();
+                vehicle.PlateNumber = _faker.Vehicle.Vin();
+                vehicle.Wheels = _faker.Random.Int(2, 8);
+                vehicle.Color = VehicleColor.Blue;
+
+                foreach (var booking in bookings)
                 {
-                    Model = _faker.Vehicle.Model(),
-                    Manufacturer = _faker.Vehicle.Manufacturer(),
-                    PlateNumber = _faker.Vehicle.Vin(),
-                    Wheels = _faker.Random.Int(2, 8),
-                };
+                    vehicle.Bookings.Add(booking);
+                }
+                
+                vehicle.Owner = owners.ElementAt(i);
+                vehicle.VehicleType = type.ElementAt(_faker.Random.Int(0,1));
+
                 vehicles.Add(vehicle);
+
+                await _context.Vehicles.AddAsync(vehicle);
             }
 
-            return vehicles;
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(vehicles);
         }
 
-        private static IEnumerable<VehicleType> InitVehicleTypes()
+        private static async Task<ICollection<VehicleType>> InitVehicleTypes()
         {
-            var car = new VehicleType()
-            {
-                Id = 1,
-                Name = "Car",
-                RequiredParkingLots = 1,
-                BasicFee = 10
-            };
-            var truck = new VehicleType()
-            {
-                Id = 2,
-                Name = "Truck",
-                RequiredParkingLots = 4,
-                BasicFee = 20
-            };
+            var types = new List<VehicleType>();
+            var car = _context.VehicleTypes.CreateProxy();
+            car.Name = "Car";
+            car.BasicFee = 10;
+            car.RequiredParkingLots = 1;
 
-            return new List<VehicleType> {car, truck};
+            var truck = _context.VehicleTypes.CreateProxy();
+            truck.Name = "Truck";
+            truck.BasicFee = 20;
+            truck.RequiredParkingLots = 4;
+
+            await _context.VehicleTypes.AddAsync(car);
+            await _context.VehicleTypes.AddAsync(truck);
+            await _context.SaveChangesAsync();
+
+            types.Add(car);
+            types.Add(truck);
+
+            return await Task.FromResult(types);
         }
 
-        private static IEnumerable<MembershipType> InitMembershipTypes()
+        private static async Task<ICollection<MembershipType>> InitMembershipTypes()
         {
-            var basic = new MembershipType()
-            {
-                Id = 1,
-                Name = "Basic"
-            };
+            var basic = _context.MembershipTypes.CreateProxy();
+            basic.Name = "Basic";
 
-            var pro = new MembershipType()
-            {
-                Id = 2,
-                Name = "Pro"
-            };
+            var pro = _context.MembershipTypes.CreateProxy();
+            pro.Name = "Pro";
 
-            return new List<MembershipType> {basic, pro};
+            _context.Add(basic);
+            _context.Add(pro);
+            await _context.SaveChangesAsync();
+
+            var list = new List<MembershipType> {basic, pro};
+
+            return await Task.FromResult(list);
         }
 
-        private static IEnumerable<ParkingLot> InitParkingLots()
+        private static async Task<IEnumerable<ParkingLot>> InitParkingLots(IEnumerable<Booking> bookings)
         {
-            var lots = new List<ParkingLot>();
+            var parkingLots = new List<ParkingLot>();
             for (var i = 0; i < 20; i++)
             {
-                var lot = new ParkingLot()
+                var lot = _context.ParkingLots.CreateProxy();
+                foreach (var booking in bookings)
                 {
-                    Number = i,
-                    Section = _faker.Company.CompanyName()[..2]
-                };
-                lots.Add(lot);
+                    lot.Bookings.Add(booking);
+                }
+                
+                lot.Number = i;
+                lot.Section = _faker.Company.CompanyName()[..2].ToUpper();
+                parkingLots.Add(lot);
+                await _context.ParkingLots.AddAsync(lot);
             }
 
-            return lots;
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(parkingLots);
         }
     }
 }

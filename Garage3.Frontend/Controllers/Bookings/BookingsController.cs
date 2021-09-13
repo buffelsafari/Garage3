@@ -20,9 +20,6 @@ namespace Garage3.Frontend.Controllers.Bookings
         public async Task<IActionResult> Index()
         {
             CheckinVehicleArgs args = new CheckinVehicleArgs();
-            
-
-            
 
             return View();
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Garage3.Data.Entities
 {
@@ -13,7 +14,7 @@ namespace Garage3.Data.Entities
 
         public virtual Garage Garage { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; } = new ObservableHashSet<Vehicle>();
 
     }
 

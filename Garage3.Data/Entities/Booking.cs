@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Garage3.Data.Entities
 {
@@ -40,6 +41,6 @@ namespace Garage3.Data.Entities
         /// <summary>
         /// THe parkinglot or lots if the vehicle occupies multiple lots
         /// </summary>
-        public virtual ICollection<ParkingLot> ParkingLots { get; set; }
+        public virtual ICollection<ParkingLot> ParkingLots { get; set; } = new ObservableHashSet<ParkingLot>();
     }
 }
