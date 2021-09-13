@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Garage3.Data.Migrations
 {
-    public partial class foo : Migration
+    public partial class blowout : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
