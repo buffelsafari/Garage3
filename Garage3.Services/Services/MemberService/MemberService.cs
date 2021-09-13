@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace Garage3.Services.MemberService
             bool surnameOption = !String.IsNullOrWhiteSpace(args.Surname);
             bool membershipTypeOption = !String.IsNullOrWhiteSpace(args.MembershipTypeName);
 
-
+            
 
             var qu = context.Members.Where(m => 
                 (!personalNumberOption || m.PersonalNumber.Contains(args.PersonalNumber))&&
@@ -85,7 +86,17 @@ namespace Garage3.Services.MemberService
 
         }
 
+        public async Task<Vehicle> AddVehicleToMember(AddVehicleArgs args, CancellationToken cancellationToken = default)
+        {
+            Member member = context.Members.Where(m => m.Id == args.MemberId).First();
+            Vehicle vehicle = context.Vehicles.Where(m => m.PlateNumber == args.PlateNumber).First();
 
+            member.Vehicles.Add(vehicle);
+            vehicle.Owner = member;
+
+            await context.SaveChangesAsync();
+            return vehicle;  
+        }
 
 
 
@@ -96,5 +107,6 @@ namespace Garage3.Services.MemberService
     }
 
 
+    
     
 }

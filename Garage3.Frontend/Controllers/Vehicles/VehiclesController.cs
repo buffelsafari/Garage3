@@ -53,8 +53,8 @@ namespace Garage3.Frontend.Controllers.Vehicles
             { 
                 VehicleId = v.Id, 
                 PlateNumber = v.PlateNumber, 
-                VehicleType = "car",   //v.VehicleType.Name, 
-                Owner="berrus"  // todo get owner if exist
+                VehicleType = v.VehicleType.Name,   //v.VehicleType.Name, 
+                Owner=v.Owner!=null?$"{v.Owner.FirstName} {v.Owner.Surname}":"-"  // todo get owner if exist
             });
 
             
@@ -84,7 +84,7 @@ namespace Garage3.Frontend.Controllers.Vehicles
             return vehicles.Where(v => v.Id == id).First();
         }
 
-
+        
 
 
         /// <summary>

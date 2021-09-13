@@ -102,7 +102,7 @@ namespace Garage3.Frontend.Controllers.Garages
                 {
                     VehicleId = v.Id,
                     PlateNumber = v.PlateNumber,
-                    Owner = v.Owner != null ? v.Owner.FirstName : "hello",
+                    Owner = v.Owner != null ? v.Owner.FirstName : "-",
                     ParkedTime = "ph timeSpan",
                     VehicleType = v.VehicleType != null ? v.VehicleType.Name : "-"
 
@@ -127,15 +127,12 @@ namespace Garage3.Frontend.Controllers.Garages
 
    
 
-        public string OnNewVehicleTypeButton(int id)
+        public async Task<string> OnNewVehicleTypeButton(int id)
         {
-            
-            var model = new
-            {
-                GarageId = id,
-                GarageName="-Garage-Name-",  //todo get garage from id
-                                
-            };
+            var gar = await garageService.FindGarages(new FindGarageArgs { GarageId = id });
+
+            var model=gar.Select(g => new { GarageId = id, GarageName = g.Name }).First();
+                       
 
             return JsonConvert.SerializeObject(model);
         }
